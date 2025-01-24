@@ -1,0 +1,108 @@
+<app-side-bar></app-side-bar>
+
+<div>
+
+    <!-- CARRUSEL -->
+    <div class="">
+        <p-galleria
+            [value]="carrusel"
+            [autoPlay]="false"
+            [transitionInterval]="3000"
+            [showThumbnails]="false"
+            [showItemNavigators]="true"
+            [circular]="true"
+            [numVisible]="1"
+            [containerStyle]="{ 'max-width': '100%' }"
+        >
+        <ng-template pTemplate="item" let-item>
+            <img [src]="item.itemImageSrc" style="width: 100%;" />
+        </ng-template>
+        </p-galleria>
+    </div>
+
+    <!-- DATOS -->
+    <div class="my-6 card-container flex my-6">
+        <div *ngFor="let item of iconosDatos; let i = index" class="card" 
+             (mouseover)="onHover(i, true)" (mouseout)="onHover(i, false)">
+          <div class="align-items-center gap-3">
+            <object #icono [attr.data]="item.svgUrl" type="image/svg+xml" class="logo"></object>
+            <span>{{ item.desc }}</span>
+          </div>
+        </div>
+    </div>
+      
+    <!-- PAGO PREDIAL -->
+    <div class="my-6 p-3"  [ngStyle]="{'background-color': 'var(--colorGris)'}">
+        <div class="flex justify-content-center"> 
+            <h2>Realiza tu pago</h2>
+        </div>
+        <div class="flex justify-content-center ">
+            <div>
+                <img src="{{icono_casa}}" alt="icono_casa">
+            </div>
+            <div class="w-3 text-xl">
+                <div>
+                    <p>¡Ya puedes realizar tu pago a través de nuestra plataforma! 
+                        Te sugerimos contar con tu línea de captura o clave catastral.</p>
+                </div>
+                <div class="flex justify-content-around ">
+                    <p-button label="Submit" />
+                    <p-button label="Contrast" severity="contrast" />
+                </div>
+            </div>
+        </div>
+    </div>
+      
+    <!-- DIF -->
+    <div class="my-6">
+        <img src="" alt="">
+    </div>
+      
+    <!-- NOTICIAS -->
+    <div class="my-6">
+        <div class="flex justify-content-center"> 
+            <h2>Noticias</h2>
+        </div>
+        <p-carousel 
+            [value]="obras" 
+            [numVisible]="3" 
+            [numScroll]="3" 
+            [circular]="false" 
+            [responsiveOptions]="responsiveOptions">
+                <ng-template let-obra pTemplate="item">
+                    <div class="border-1 surface-border border-round m-2 p-3">
+                        <div class="mb-3">
+                            <div class="relative mx-auto">
+                                <img 
+                                    src="{{ obra.image }}" 
+                                    [alt]="obra.name"
+                                    class="w-full border-round" />
+                            </div>
+                        </div>
+                        <div class="mb-3 font-medium">
+                            {{ obra.name }}
+                        </div>
+                    </div>
+                </ng-template>
+        </p-carousel>
+    </div>
+
+    <!-- REDES SOCIALES -->
+    <div class="my-6 p-3"  [ngStyle]="{'background-color': 'var(--colorGris)'}">
+        <div class="flex justify-content-center"> 
+            <h2>¡Síguenos en Redes!</h2>
+        </div>
+        <div class="flex justify-content-center ">
+            <p-button label="Submit" />
+        </div>
+        <div class="flex justify-content-center ">
+            <img src="" alt="">
+        </div>
+    </div>
+
+    <!-- OTRAS EMPRESAS -->
+    <div>
+
+    </div>
+
+</div>

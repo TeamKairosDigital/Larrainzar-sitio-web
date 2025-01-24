@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/primeng.min.css";
+@import "primeflex/primeflex.css";
+@import "primeicons/primeicons.css";
+
+/* Estilo global para eliminar márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --colorGris: #ECECEC;
+  }

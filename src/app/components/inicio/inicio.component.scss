@@ -1,0 +1,41 @@
+.card-container {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 3rem;
+    width: 15rem;
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+  
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    object.logo {
+        width: 8rem;
+        transition: fill 0.3s; /* Puedes manipular el fill si es necesario */
+    }
+
+    // &:hover object.logo {
+    // fill: #007bff; /* Cambiar color del SVG al pasar el mouse */
+    // }
+
+    span {
+        font-size: 14px;
+        transition: color 0.3s;
+    }
+
+    &:hover span {
+        color: #007bff;
+    }
+   
+  }
+  
+  
