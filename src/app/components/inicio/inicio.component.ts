@@ -103,27 +103,27 @@ export class InicioComponent implements OnInit{
     this.obras = [
       {
           image: 'assets/img/intro/C_1.jpg',
-          name: 'nombre'
+          titulo: 'nombre'
       },
       {
           image: 'assets/img/intro/C_1.jpg',
-          name: 'nombre'
+          titulo: 'nombre'
       },
       {
           image: 'assets/img/intro/C_1.jpg',
-          name: 'nombre'
-      },
-      {
-        image: 'assets/img/intro/C_1.jpg',
-        name: 'nombre'
+          titulo: 'nombre'
       },
       {
           image: 'assets/img/intro/C_1.jpg',
-          name: 'nombre'
+          titulo: 'nombre'
       },
       {
           image: 'assets/img/intro/C_1.jpg',
-          name: 'nombre'
+          titulo: 'nombre'
+      },
+      {
+          image: 'assets/img/intro/C_1.jpg',
+          titulo: 'nombre'
       }
     ];
 

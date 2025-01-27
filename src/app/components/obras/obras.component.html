@@ -1,3 +1,67 @@
 <app-side-bar></app-side-bar>
 
+    <!-- CONTENIDO POR CAD OBRA -->
+     <div [ngStyle]="{'background-color': 'var(--colorGris)'}">
+        <div class="flex">
+            <p></p>
+            <p>/</p>
+            <p></p>
+        </div>
+        <div>
+            <h1 class="text-4xl font-bold text-center">Obras</h1>
+        </div>
+        <div>
+            <img src="" alt="">
+        </div>
+        <div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dignissimos, odio fugiat sed harum et explicabo? Fugiat provident alias commodi dicta temporibus. Dolorum veniam eveniet molestias praesentium porro animi. Vitae?</p>
+        </div>
+     </div>
+
+    <!-- NOTICIAS -->
+    <div class="my-6 mx-auto w-8">
+        <p-carousel 
+            [value]="obras" 
+            [numVisible]="3" 
+            [numScroll]="3"
+            [circular]="false" 
+            [responsiveOptions]="responsiveOptions">
+                <ng-template let-obra pTemplate="item">
+                    <div class=" m-2 p-3">
+                        <div class="mb-3">
+                            <div class="relative mx-auto">
+                                <img 
+                                    src="{{ obra.imagen }}" 
+                                    [alt]="obra.nombre"
+                                    class="w-full border-round" />
+                            </div>
+                        </div>
+                        <div class="mb-3 font-medium">
+                            {{ obra.nombre }}
+                        </div>
+                    </div>
+                </ng-template>
+        </p-carousel>
+    </div>
+
+    <!-- REDES SOCIALES -->
+    <div class="mt-6 pt-6"  [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);">
+        <div class="flex justify-content-center my-3"> 
+            <h2 class="text-6xl font-normal mr-2" >
+                ¡Síguenos
+            </h2>
+            <h2 class="text-6xl font-bold font-italic">
+                en Redes!
+            </h2>
+        </div>                      
+        <div class="flex justify-content-center w-full my-6">
+            <a href="#" class="Btn-Azul mr-4">Facebook</a>
+        </div>
+        <div class="mt-6">
+            <!-- CAMBIAR IMAGEN -->
+            <img src="../../../assets/img/dif/redes_dif.png" alt="icono_casa" width="10%" class="block mx-auto">
+        </div>
+    </div>
+
+
 <app-footer></app-footer>
