@@ -10,6 +10,46 @@
     box-sizing: border-box;
   }
 
-  :root {
+:root {
     --colorGris: #ECECEC;
+    --colorAzul: #0745BF;
+    --colorCrema: #D7C1A2;
+    --colorMorado: #6565CB;
+    --colorVerdeOscuro: #003232;
+    --colorVerde: #009933;
+    --colorBlanco: #FFFFFF;
+    --colorRojo: #Bf0707;
+    --colorNegro: #000000;
+    --colorGrisOscuro: #919191;
+    --colorGrisMenu: #585858;
+}
+  
+.Btn-Azul{
+  text-decoration: none;
+  padding: .5rem .8rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background-color: var(--colorAzul);
+  color: var(--colorBlanco);
+  transition: all .2s;
+
+  &:hover{
+    background-color: var(--colorBlanco);
+    color: var(--colorAzul);
   }
+}
+
+.Btn-Blanco{
+  text-decoration: none;
+  padding: .5rem .8rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background-color: var(--colorBlanco);
+  color: var(--colorAzul);
+  transition: all .2s;
+
+  &:hover{
+    background-color: var(--colorAzul);
+    color: var(--colorBlanco);
+  }
+}

@@ -22,7 +22,7 @@
 
     <!-- DATOS -->
     <div class="my-6 card-container flex my-6">
-        <div *ngFor="let item of iconosDatos; let i = index" class="card" 
+        <div *ngFor="let item of iconosDatos; let i = index" class="cardData" 
              (mouseover)="onHover(i, true)" (mouseout)="onHover(i, false)">
           <div class="align-items-center gap-3">
             <object #icono [attr.data]="item.svgUrl" type="image/svg+xml" class="logo"></object>
@@ -32,37 +32,64 @@
     </div>
       
     <!-- PAGO PREDIAL -->
-    <div class="my-6 p-3"  [ngStyle]="{'background-color': 'var(--colorGris)'}">
-        <div class="flex justify-content-center"> 
-            <h2>Realiza tu pago</h2>
+    <div class="my-6 p-6"  [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);">
+        <div class="flex justify-content-center my-3"> 
+            <h2 class="text-6xl font-normal mr-2" >
+                Realiza tu 
+            </h2>
+            <h2 class="text-6xl font-bold font-italic">
+                pago Predial
+            </h2>
         </div>
-        <div class="flex justify-content-center ">
+        <div class="flex justify-content-center -ml-8">
             <div>
-                <img src="{{icono_casa}}" alt="icono_casa">
+                <img src="{{icono_casa}}" alt="icono_casa" width="70%" class="block mx-auto">
             </div>
-            <div class="w-3 text-xl">
-                <div>
-                    <p>¡Ya puedes realizar tu pago a través de nuestra plataforma! 
-                        Te sugerimos contar con tu línea de captura o clave catastral.</p>
+            <div class="w-3 text-xl flex flex-column justify-content-center align-items-center">
+                <div class="mb-6">
+                    <p class="line-height-2">
+                        ¡Ya puedes realizar tu pago a través de nuestra plataforma! 
+                        Te sugerimos contar con tu línea de captura o clave catastral.
+                    </p>
                 </div>
-                <div class="flex justify-content-around ">
-                    <p-button label="Submit" />
-                    <p-button label="Contrast" severity="contrast" />
+                <div class="flex justify-content-center w-full">
+                    <a href="#" class="Btn-Azul mr-4">Realiza pago</a>
+                    <a href="#" class="Btn-Blanco">Ver tutorial</a>
                 </div>
             </div>
         </div>
     </div>
       
     <!-- DIF -->
-    <div class="my-6">
-        <img src="" alt="">
+    <div class="my-6 w-full">
+        <div class="flex justify-content-center"> 
+            <h2 class="text-6xl font-normal my-6" >
+                Destacados
+            </h2>
+        </div>
+        <div class="flex w-full">
+            <div *ngFor="let service of serviciosDIF" class="col-4 p-0">
+              <div class="card p-0">
+                <div class="card-image">
+                  <img [src]="service.image" [alt]="service.name">
+                </div>
+                <div class="card-content flex flex-column justify-content-center align-items-center">
+                  <h4 class="pt-2 text-4xl font-semibold">{{ service.name }}</h4>
+                  <h5>{{ service.desc }}</h5>
+                </div>
+              </div>
+            </div>
+        </div>          
     </div>
       
     <!-- NOTICIAS -->
-    <div class="my-6">
+    <div class="my-6 mx-auto w-8">
         <div class="flex justify-content-center"> 
-            <h2>Noticias</h2>
+            <h2 class="text-6xl font-normal my-6">
+                Noticias
+            </h2>
         </div>
+
         <p-carousel 
             [value]="obras" 
             [numVisible]="3" 
@@ -88,21 +115,35 @@
     </div>
 
     <!-- REDES SOCIALES -->
-    <div class="my-6 p-3"  [ngStyle]="{'background-color': 'var(--colorGris)'}">
-        <div class="flex justify-content-center"> 
-            <h2>¡Síguenos en Redes!</h2>
+    <div class="my-6 p-6"  [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);">
+        <div class="flex justify-content-center my-3"> 
+            <h2 class="text-6xl font-normal mr-2" >
+                ¡Síguenos
+            </h2>
+            <h2 class="text-6xl font-bold font-italic">
+                en Redes!
+            </h2>
+        </div>                      
+        <div class="flex justify-content-center w-full my-6">
+            <a href="#" class="Btn-Azul mr-4">Facebook</a>
         </div>
-        <div class="flex justify-content-center ">
-            <p-button label="Submit" />
-        </div>
-        <div class="flex justify-content-center ">
-            <img src="" alt="">
+        <div class="my-6">
+            <img src="{{icono_casa}}" alt="icono_casa" width="10%" class="block mx-auto">
         </div>
     </div>
 
     <!-- OTRAS EMPRESAS -->
-    <div>
-
+    <div class="my-6">
+        <div class="flex flex-wrap justify-content-between w-full">
+          <div *ngFor="let empresa of empresasLogo" class="col-4 mb-4">
+            <div class="text-center">
+              <img [src]="empresa.image" [alt]="empresa.name" class="block mx-auto" [width]="300" />
+            </div>
+          </div>
+        </div>
     </div>
+      
 
 </div>
+
+<app-footer></app-footer>

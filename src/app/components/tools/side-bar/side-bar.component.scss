@@ -1,25 +1,118 @@
-.menuCSS3 ul {
-    display: flex;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
+.menuCSS3 {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--colorBlanco);
+    overflow: visible;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 2rem; /* Espaciado para un diseño limpio */
 
-.menuCSS3 a {
-    display: block;
-    padding: 1rem;
-    text-decoration: none;
-    color: #191C26;
-}
+    ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        gap: 1rem; /* Espaciado entre los elementos del menú */
 
-.menuCSS3 a:hover {
-    background-color: #CC673B;
-}
+        li {
+            margin: 0 20px;
+            position: relative;
 
-.menuCSS3 ul li ul {
-    display: none;
-}
+            a {
+                text-decoration: none;
+                display: block;
+                padding: 5px 0;
+                line-height: 1;
+                font-weight: bold;
+                position: relative;
+                z-index: 1;
+                text-align: center;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-image: linear-gradient(
+                    to right,
+                    var(--colorAzul),
+                    var(--colorAzul) 50%,
+                    var(--colorGrisMenu) 50%
+                );
+                background-size: 200% 100%;
+                background-position: -100%;
+                transition: all 0.3s ease-in-out;
 
-.menuCSS3 ul li a:hover + ul, .menuCSS3 ul li ul:hover {
-    display: block;
+                &:before {
+                    display: block;
+                    content: '';
+                    width: 0;
+                    height: 3px;
+                    bottom: 5px;
+                    left: 0;
+                    bottom: -3px;
+                    z-index: 0;
+                    position: absolute;
+                    background: var(--colorAzul);
+                    transition: all 0.3s ease-in-out;
+                }
+                &:hover {
+                    background-position: 0%;
+                    &:before {
+                        width: 100%;
+                    }
+                }
+            }
+
+            ul {
+                display: none;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                background-color: var(--colorAzul);
+                z-index: 1100;
+                padding: 0 0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                li {
+                    
+                    padding: 0 0;
+                    margin: 0 0;
+                    a {
+                        color: var(--colorGris);
+                        padding: 0.7rem 1rem;
+                        width: 100%;
+                        // font-size: 0.9rem;
+                        display: block;
+                        background-color: var(--colorAzul); /* Fondo inicial */
+                        transition: background-color 0.3s ease, color 0.3s ease;
+                        background-image: linear-gradient(
+                            to right,
+                            var(--colorAzul),
+                            var(--colorAzul) 50%,
+                            var(--colorGris) 50%);
+                        
+                        &:before {
+                            height: 3px;
+                            bottom: 0px;
+                        }
+                            
+                        &:hover {
+                            width: 100%;
+                            //background-color: var(--colorAzul); /* Cambia el fondo a blanco */
+                            //background-image: none !important; /* Elimina cualquier gradiente superpuesto */
+                        }
+                    }
+
+                    &:hover {
+                        background-color: var(--colorGris); /* Cambia el fondo a blanco */
+                        //color: var(--colorAzul); /* Cambia el texto a azul */
+                        //background-image: none !important; /* Elimina cualquier gradiente superpuesto */
+                    }
+                }
+            }
+
+            &:hover {
+                ul {
+                    display: block;
+                }
+            }
+        }
+    }
 }

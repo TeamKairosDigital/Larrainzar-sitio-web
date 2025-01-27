@@ -1,19 +1,18 @@
 <nav class="menuCSS3 flex justify-content-between p-3">
     <div>
-        <img src="../../../../assets/img/LOGO_COMPLETO.png" alt="LOGO_COMPLETO" width="250">
+        <img src="../../../../assets/img/LOGO_COMPLETO.png" alt="LOGO_COMPLETO" width="200">
     </div>
     <ul>
         <li><a href="#">Inicio</a></li>
         <li><a href="#">Ayuntamiento</a>
             <ul>
-                <li><a href="#">Juan</a></li>
-                <li><a href="#">Paco</a></li>
-                <li><a href="#">Ramón</a></li>
-                <li><a href="#">María</a></li>
+                <li><a [routerLink]="['/ayuntamiento', 'presidente']">Presidente Municipal</a></li>
+                <li><a [routerLink]="['/ayuntamiento', 'cabildo']">Integración de cabildo</a></li>
+                <li><a [routerLink]="['/ayuntamiento', 'directorio']">Directorio Municipal</a></li>
             </ul>
         </li>
-        <li><a href="#">DIF</a></li>
-        <li><a href="#">Obras</a></li>
+        <li><a [routerLink]="['/dif']">DIF</a></li>
+        <li><a [routerLink]="['/obras']">Obras</a></li>
         <li><a href="#">Transparencias</a>
             <ul>
                 <li><a href="#">Email</a></li>
