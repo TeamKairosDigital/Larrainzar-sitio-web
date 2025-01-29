@@ -22,6 +22,7 @@ import { CardModule } from 'primeng/card';
 import { RouterModule } from '@angular/router';
 import { GalleriaModule } from 'primeng/galleria';
 import { CarouselModule } from 'primeng/carousel';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
     imports: [
@@ -46,7 +47,8 @@ import { CarouselModule } from 'primeng/carousel';
         RouterModule,
         ReactiveFormsModule,
         GalleriaModule,
-        CarouselModule
+        CarouselModule,
+        TooltipModule
     ],
     exports: [
         CommonModule,
@@ -70,7 +72,8 @@ import { CarouselModule } from 'primeng/carousel';
         RouterModule,
         ReactiveFormsModule,
         GalleriaModule,
-        CarouselModule
+        CarouselModule,
+        TooltipModule
     ]
 })
 export class ImportsModule { }

@@ -37,7 +37,7 @@ export class ObrasComponent {
       private obrasServices: ObrasService,
       private messageService: MessageService,
       private sanitizer: DomSanitizer,
-          private route: ActivatedRoute
+      private route: ActivatedRoute
     ) { }
 
     ngOnInit() {

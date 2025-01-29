@@ -67,4 +67,10 @@
         </div>
     </div>
 
+    <p-toast />
+    <div *ngIf="spinner" class="overlay">
+        <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+            animationDuration=".5s" />
+    </div>
+
 <app-footer></app-footer>
