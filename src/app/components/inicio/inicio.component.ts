@@ -7,6 +7,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { obrasDto } from '../../models/output/obras.dto';
 import { FooterComponent } from "../tools/footer/footer.component";
+import { ObrasService } from '../../services/obras.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -14,15 +17,25 @@ import { FooterComponent } from "../tools/footer/footer.component";
   imports: [ImportsModule, SideBarComponent, HttpClientModule, FooterComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss',
-  providers: [SideBarComponent, FooterComponent]
+  providers: [SideBarComponent, FooterComponent, MessageService]
 })
 export class InicioComponent implements OnInit{
 
+  spinner = false;
   carrusel: any[] | undefined;
   iconosDatos: { svgUrl: SafeResourceUrl, desc: string }[] = [];
   @ViewChildren('icono') iconoElements: QueryList<any> | undefined;
   icono_casa: string = '';
 
+  obraSeleccionada: obrasDto = {
+    autor: '',
+    imagenUrl: '',
+    descripcion: '',
+    fechaCreacion: '',
+    id: 0,
+    imagen: '',
+    nombre: ''
+  }
   obras: obrasDto[] = [];  
   responsiveOptions: any[] | undefined;
 
@@ -73,7 +86,10 @@ export class InicioComponent implements OnInit{
 
   constructor(
     private inicioServices: InicioService, 
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private obrasServices: ObrasService,
+    private messageService: MessageService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -100,33 +116,6 @@ export class InicioComponent implements OnInit{
 
     this.icono_casa = 'assets/img/intro/icono_casa.png';
 
-    this.obras = [
-      {
-          image: 'assets/img/intro/C_1.jpg',
-          titulo: 'nombre'
-      },
-      {
-          image: 'assets/img/intro/C_1.jpg',
-          titulo: 'nombre'
-      },
-      {
-          image: 'assets/img/intro/C_1.jpg',
-          titulo: 'nombre'
-      },
-      {
-          image: 'assets/img/intro/C_1.jpg',
-          titulo: 'nombre'
-      },
-      {
-          image: 'assets/img/intro/C_1.jpg',
-          titulo: 'nombre'
-      },
-      {
-          image: 'assets/img/intro/C_1.jpg',
-          titulo: 'nombre'
-      }
-    ];
-
     this.responsiveOptions = [
         {
             breakpoint: '1199px',
@@ -144,6 +133,8 @@ export class InicioComponent implements OnInit{
             numScroll: 1
         }
     ];
+
+    this.getAllObras();
   }
 
   ngAfterViewInit() {
@@ -174,5 +165,73 @@ export class InicioComponent implements OnInit{
   }
 
 
+  // Obtener lista de obras
+  getAllObras(): void {
+
+    this.spinner = true;
+    this.obrasServices.getAll().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.obras = response.data || [];
+          this.obras.forEach(async (element) => {
+            element.descripcion = this.sanitizer.bypassSecurityTrustHtml(element.descripcion || '') as unknown as string;
+            const mimeType = this.detectMimeType(element.imagenUrl); // Detectar MIME dinámicamente
+            const blob = this.base64ToBlob(element.imagenUrl, mimeType);
+            const url = URL.createObjectURL(blob);
+            element.imagen = this.sanitizer.bypassSecurityTrustResourceUrl(url); // Esto ahora usará un URL seguro
+
+          });
+          // console.log(this.obras);
+          // this.messageService.add({ severity: 'success', summary: 'Guardado', detail: response.message, life: 10000 });
+        } else {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message, life: 10000 });
+        }
+        this.spinner = false; // Detén el spinner en ambos casos
+      },
+      error: (error) => {
+        // Maneja el error del backend y muestra un mensaje
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: error.error.message || 'Error al crear el empleado',
+          life: 10000
+        });
+        this.spinner = false; // Detén el spinner en caso de error
+      },
+    });
+
+  }
+
+  // conversion de base64 para archivos
+  private base64ToBlob(base64: string, mimeType: string): Blob {
+    const byteCharacters = atob(base64);
+    const byteArrays: Uint8Array[] = [];
+  
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+      const slice = byteCharacters.slice(offset, offset + 512);
+      const byteNumbers = Array.prototype.map.call(slice, (char) =>
+        char.charCodeAt(0)
+      ) as number[];
+      byteArrays.push(new Uint8Array(byteNumbers));
+    }
+  
+    return new Blob(byteArrays, { type: mimeType });
+  }
+  
+  // Detecta dinámicamente el MIME según el prefijo del Base64
+  private detectMimeType(base64: string): string {
+    if (base64.startsWith('/9j/')) {
+      return 'image/jpeg';
+    } else if (base64.startsWith('iVBORw0KGgo')) {
+      return 'image/png';
+    }
+    return 'image/jpeg'; // Valor predeterminado
+  }
+
+  selectObra(obra: obrasDto): void {
+    this.obraSeleccionada = { ...obra };
+    this.router.navigate(['/obras', this.obraSeleccionada.id]);
+    // console.log('Obra seleccionada:', this.obraSeleccionada);
+  }
 
 }

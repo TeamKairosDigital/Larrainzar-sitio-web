@@ -1,0 +1,15 @@
+.image-container {
+    width: 300px; /* Ancho fijo del contenedor */
+    height: 200px; /* Alto fijo del contenedor */
+    overflow: hidden; /* Oculta cualquier parte que se salga del contenedor */
+    display: flex; /* Centra la imagen */
+    justify-content: center; 
+    align-items: center;
+    border-radius: 10px; /* Opcional: hace las esquinas redondeadas */
+  }
+  
+  .image {
+    width: 100%; /* La imagen ocupará todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupará todo el alto del contenedor */
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+  }

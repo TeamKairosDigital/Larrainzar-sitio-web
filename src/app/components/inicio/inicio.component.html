@@ -97,18 +97,22 @@
             [circular]="false" 
             [responsiveOptions]="responsiveOptions">
                 <ng-template let-obra pTemplate="item">
-                    <div class="m-2 p-3">
+                    <div class="m-3 cursor-pointer" (click)="selectObra(obra)">
                         <div class="mb-3">
-                            <div class="relative mx-auto">
+                            <div class="relative mx-auto image-container">
                                 <img 
-                                    src="{{ obra.image }}" 
-                                    [alt]="obra.name"
-                                    class="w-full border-round" />
+                                [src]="obra.imagen"
+                                [alt]="obra.nombre"
+                                class="image"
+                                 />
                             </div>
                         </div>
-                        <div class="mb-3 font-medium">
-                            {{ obra.name }}
-                        </div>
+                        <p class="mb-2 font-medium text-xs">
+                            {{ obra.fechaCreacion }}
+                        </p>
+                        <p class="mb-3 font-medium">
+                            {{ obra.nombre }}
+                        </p>
                     </div>
                 </ng-template>
         </p-carousel>
@@ -142,7 +146,6 @@
           </div>
         </div>
     </div>
-      
 
 </div>
 

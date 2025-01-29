@@ -99,3 +99,12 @@ h3, p{
   border-radius: 50%;
   object-fit: cover;
 }
+
+.p-galleria .p-galleria-item-nav {
+  color: var(--colorAzul);
+}
+
+.p-galleria-item-container {
+  width: 70%;
+  margin: 0 auto;
+}

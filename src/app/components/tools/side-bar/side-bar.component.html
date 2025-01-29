@@ -1,6 +1,6 @@
 <nav class="menuCSS3 flex justify-content-between p-3">
-    <div>
-        <img src="../../../../assets/img/LOGO_COMPLETO.png" alt="LOGO_COMPLETO" width="200">
+    <div class="logo">
+        <img src="../../../../assets/img/sideBar/LOGO_COMPLETO.png" alt="LOGO_COMPLETO" width="200">
     </div>
     <ul>
         <li><a href="#">Inicio</a></li>
@@ -12,11 +12,10 @@
             </ul>
         </li>
         <li><a [routerLink]="['/dif']">DIF</a></li>
-        <li><a [routerLink]="['/obras']">Obras</a></li>
+        <li><a [routerLink]="['/obras',0]">Obras</a></li>
         <li><a href="#">Transparencias</a>
             <ul>
-                <li><a href="#">Email</a></li>
-                <li><a href="#">Mapa</a></li>
+                <li><a [routerLink]="['/avisoPrivacidad']">Aviso de privacidad</a></li>
             </ul>
         </li>
         <li><a href="#">SEVAC</a></li>
