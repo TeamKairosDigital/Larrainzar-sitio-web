@@ -24,7 +24,7 @@
     </div>    
 
     <!-- DATOS -->
-    <div class="my-6 card-container flex my-6">
+    <div class="my-8 card-container flex">
         <div *ngFor="let item of iconosDatos; let i = index" class="cardData" 
              (mouseover)="onHover(i, true)" (mouseout)="onHover(i, false)">
           <div class="align-items-center gap-3">
@@ -36,21 +36,21 @@
       
     <!-- PAGO PREDIAL -->
     <div class="my-6 p-6"  [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);">
-        <div class="flex justify-content-center my-3"> 
-            <h2 class="text-6xl font-normal mr-2" >
+        <div class="block md:flex justify-content-center my-3"> 
+            <h2 class="text-6xl font-normal my-0 md:mr-2">
                 Realiza tu 
             </h2>
-            <h2 class="text-6xl font-bold font-italic">
+            <h2 class="text-6xl font-bold font-italic my-0">
                 pago Predial
             </h2>
         </div>
-        <div class="flex justify-content-center -ml-8">
-            <div>
-                <img src="{{icono_casa}}" alt="icono_casa" width="70%" class="block mx-auto">
+        <div class="block md:flex justify-content-center -ml-8">
+            <div class=" mx-auto col-12 md:col-4">
+                <img src="{{icono_casa}}" alt="icono_casa" width="100%" class="block mx-auto">
             </div>
-            <div class="w-3 text-xl flex flex-column justify-content-center align-items-center">
+            <div class=" col-12 md:col-4 text-xl text-xl flex flex-column justify-content-center align-items-center">
                 <div class="mb-6">
-                    <p class="line-height-2">
+                    <p class="line-height-2 ">
                         ¡Ya puedes realizar tu pago a través de nuestra plataforma! 
                         Te sugerimos contar con tu línea de captura o clave catastral.
                     </p>
@@ -142,7 +142,7 @@
     <!-- OTRAS EMPRESAS -->
     <div class="my-6">
         <div class="flex flex-wrap justify-content-between w-full">
-          <div *ngFor="let empresa of empresasLogo" class="col-4 mb-4">
+          <div *ngFor="let empresa of empresasLogo" class="col-12 md:col-4 p-2">
             <div class="text-center">
               <img [src]="empresa.image" [alt]="empresa.name" class="block mx-auto" [width]="300" />
             </div>

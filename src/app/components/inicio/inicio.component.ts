@@ -184,6 +184,7 @@ export class InicioComponent implements OnInit{
           // console.log(this.obras);
           // this.messageService.add({ severity: 'success', summary: 'Guardado', detail: response.message, life: 10000 });
         } else {
+          this.spinner = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message, life: 10000 });
         }
         this.spinner = false; // Detén el spinner en ambos casos
@@ -193,7 +194,7 @@ export class InicioComponent implements OnInit{
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: error.error.message || 'Error al crear el empleado',
+          detail: error.error.message || 'Error con el servidor',
           life: 10000
         });
         this.spinner = false; // Detén el spinner en caso de error
