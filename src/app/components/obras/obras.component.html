@@ -1,25 +1,25 @@
 <app-side-bar></app-side-bar>
 
     <!-- CONTENIDO POR CAD OBRA -->
-     <div class="px-8 py-5" [ngStyle]="{'background-color': 'var(--colorGris)', 'color': 'var(--colorGrisMenu)'}">
-        <div class="flex py-4">
+     <div class="px-4 md:px-8 py-5" [ngStyle]="{'background-color': 'var(--colorGris)', 'color': 'var(--colorGrisMenu)'}">
+        <div class="flex py-2">
             <p class="font-semibold">{{ obraSeleccionada.fechaCreacion }}</p>
             <p class="mx-1">/</p>
             <p class="font-italic">{{ obraSeleccionada.autor }}</p>
         </div>
-        <div class="py-4">
+        <div class="py-2">
             <h1 class="text-4xl font-bold text-center">{{ obraSeleccionada.nombre }}</h1>
         </div>
-        <div class="py-4">
-            <img [src]="obraSeleccionada.imagen" [alt]="obraSeleccionada.nombre" width="40%" class="block mx-auto">
+        <div class="py-2 w-10 md:w-6 mx-auto">
+            <img [src]="obraSeleccionada.imagen" [alt]="obraSeleccionada.nombre" width="100%" class="block mx-auto">
         </div>
-        <div class="py-4">
+        <div class="py-2">
             <p [innerHTML]="obraSeleccionada.descripcion"></p>
         </div>
     </div>
 
     <!-- NOTICIAS -->
-    <div class="my-8 mx-auto w-8">
+    <div class="my-8 mx-auto w-11 md:w-8">
         <p-carousel 
           [value]="obras" 
           [numVisible]="3" 
@@ -29,7 +29,7 @@
             <ng-template let-obra pTemplate="item">
                 <div class="m-3 cursor-pointer" (click)="selectObra(obra)">
                     <div class="mb-3">
-                        <div class="relative mx-auto image-container">
+                        <div class="w-auto relative mx-auto image-container">
                             <img 
                             [src]="obra.imagen"
                             [alt]="obra.nombre"
@@ -49,21 +49,21 @@
     </div>
 
     <!-- REDES SOCIALES -->
-    <div class="mt-6 pt-6"  [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);">
-        <div class="flex justify-content-center my-3"> 
-            <h2 class="text-6xl font-normal mr-2" >
+    <div class="mt-6 pt-6" [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);">
+        <div class="block md:flex justify-content-center my-3"> 
+            <h2 class="text-6xl font-normal my-0 md:mr-2 text-center">
                 ¡Síguenos
             </h2>
-            <h2 class="text-6xl font-bold font-italic">
+            <h2 class="text-6xl font-bold font-italic my-0 text-center">
                 en Redes!
             </h2>
         </div>                      
         <div class="flex justify-content-center w-full my-6">
             <a href="#" class="Btn-Azul mr-4">Facebook</a>
         </div>
-        <div class="mt-6">
+        <div class="mt-6 col-12 md:col-4 w-5 md:w-2 mx-auto">
             <!-- CAMBIAR IMAGEN -->
-            <img src="../../../assets/img/dif/redes_dif.png" alt="icono_casa" width="10%" class="block mx-auto">
+            <img src="../../../assets/img/dif/redes_dif.png" alt="icono_casa" width="100%" class="block">
         </div>
     </div>
 

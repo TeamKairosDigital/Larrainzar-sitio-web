@@ -1,12 +1,12 @@
 <app-side-bar></app-side-bar>
 
     <div class="my-8">
-        <div class="text-center text-6xl" [ngStyle]="{'color': 'var(--colorGrisMenu)'}">
+        <div class="text-center text-4xl md:text-6xl" [ngStyle]="{'color': 'var(--colorGrisMenu)'}">
             <p>Aviso de privacidad por áreas</p>
         </div>
 
-        <div class="grid mt-5 w-7 mx-auto">
-            <div *ngFor="let item of obras" class="col-12 md:col-4 p-2">
+        <div class="grid mt-5 w-9 lg:w-10 xl:w-8 mx-auto">
+            <div *ngFor="let item of obras" class="col-12 md:col-6 lg:col-6 xl:col-4 p-2">
                 <div class="card p-4 border-round card-shadow">
                     <!-- 🟢 TEXTO CON LÍMITE DE 2 LÍNEAS Y TOOLTIP -->
                     <p 
@@ -24,7 +24,7 @@
                             label="Simplificado"
                             (click)="descargarArchivo(item.archivos, 1)"
                             [disabled]="!tieneArchivoTipo(item.archivos, 1)"
-                            class="col-5 Btn-Gris text-sm">
+                            class="col-6 lg:col-6 xl:col-5 Btn-Gris text-sm">
                         </button>
 
                         <button 
@@ -32,7 +32,7 @@
                             label="Integral" 
                             (click)="descargarArchivo(item.archivos, 2)"
                             [disabled]="!tieneArchivoTipo(item.archivos, 2)"
-                            class="col-5 Btn-Gris text-sm">
+                            class="col-6 lg:col-6 xl:col-5 Btn-Gris text-sm">
                         </button>
                     </div>
                 </div>

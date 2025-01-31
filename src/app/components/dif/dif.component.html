@@ -1,20 +1,20 @@
 <app-side-bar></app-side-bar>
 
 <!-- INTRO -->
-<div>
+<div class="">
     <img src="../../../assets/img/dif/foto_principal_dif.png" alt="foto_principal_dif"  width="100%">
 </div>
 
 <!-- MISION Y VISION -->
 <div class="mx-auto my-8" [ngStyle]="{'color': 'var(--colorGrisOscuro)'}">
-    <div class="text-center font-italic text-4xl" >
+    <div class="text-center font-italic text-3xl md:text-4xl">
         <h2>DIF LARRÁINZAR</h2>
     </div>
-    <div class="flex w-8 my-8 mx-auto">
-        <div class="mr-8">
-            <img src="../../../assets/img/dif/logo_dif.png" alt="logo_dif">
+    <div class="block lg:flex w-auto md:w-8 my-8 mx-4 md:mx-auto">
+        <div class="mx-1 md:mr-8 col-12 lg:col-4">
+            <img src="../../../assets/img/dif/logo_dif.png" alt="logo_dif" width="100%">
         </div>
-        <div>
+        <div class="col-12 lg:col-8">
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
@@ -46,12 +46,12 @@
 </div>
 
 <!-- REDES SOCIALES -->
-<div class="flex justify-content-center my-8 ">
-    <div class="flex justify-content-end">
-        <img src="../../../assets/img/dif/redes_dif.png" alt="foto_redes_sociales" width="70%" class="block">
+<div class="block md:flex justify-content-center my-8 ">
+    <div class="w-8 md:w-3 mx-auto md:m-0 flex justify-content-end">
+        <img src="../../../assets/img/dif/redes_dif.png" alt="foto_redes_sociales" width="100%" class="block">
     </div>
-    <div class="w-3 font-normal font-italic mt-8 line-height-1" [ngStyle]="{'color': 'var(--colorGrisOscuro)'}">
-        <h2 class="text-7xl">¡Síguenos en redes sociales!</h2>
+    <div class="w-8 md:w-3 mx-auto md:m-0 font-normal font-italic mt-0 md:mt-8 line-height-1" [ngStyle]="{'color': 'var(--colorGrisOscuro)'}">
+        <h2 class="text-4xl md:text-7xl text-center mt-0 md:mt-auto">¡Síguenos en redes sociales!</h2>
         <div class="text-center w-full my-6 text-2xl">
             <a href="#" class="Btn-Azul">Facebook</a>
         </div>

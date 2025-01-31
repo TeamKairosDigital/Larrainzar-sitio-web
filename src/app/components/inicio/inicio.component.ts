@@ -61,26 +61,32 @@ export class InicioComponent implements OnInit{
     {
       image: 'assets/img/intro/transparencia.png',
       name: 'transparencia',
+      width: '300'
     },
     {
       image: 'assets/img/intro/inai-logo.png',
       name: 'inai',
+      width: '300'
     },
     {
       image: 'assets/img/intro/itipch.png',
       name: 'itipch',
+      width: '250'
     },
     {
       image: 'assets/img/intro/consulta.png',
       name: 'consulta',
+      width: '300'
     },
     {
       image: 'assets/img/intro/SISTEMA-NACIONAL-DE-TRASNPARENCIA.png',
       name: 'SISTEMA-NACIONAL-DE-TRASNPARENCIA',
+      width: '300'
     },
     {
-      image: 'assets/img/intro/Archivo_General_de_la_Nación_logo.jpg',
-      name: 'Archivo_General_de_la_Nación_logo',
+      image: 'assets/img/intro/sevac.png',
+      name: 'sevac',
+      width: '150'
     }
   ];
 

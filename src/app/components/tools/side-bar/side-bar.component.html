@@ -1,34 +1,10 @@
-<!-- <nav class="menuCSS3 flex justify-content-between p-3">
-    <div class="logo">
-        <img src="../../../../assets/img/sideBar/LOGO_COMPLETO.png" alt="LOGO_COMPLETO" width="200">
-    </div>
-    <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a>Ayuntamiento</a>
-            <ul>
-                <li><a [routerLink]="['/ayuntamiento', 'presidente']">Presidente Municipal</a></li>
-                <li><a [routerLink]="['/ayuntamiento', 'cabildo']">Integración de cabildo</a></li>
-                <li><a [routerLink]="['/ayuntamiento', 'directorio']">Directorio Municipal</a></li>
-            </ul>
-        </li>
-        <li><a [routerLink]="['/dif']">DIF</a></li>
-        <li><a [routerLink]="['/obras',0]">Obras</a></li>
-        <li><a>Transparencias</a>
-            <ul>
-                <li><a [routerLink]="['/avisoPrivacidad']">Aviso de privacidad</a></li>
-            </ul>
-        </li>
-        <li><a [routerLink]="['/sevac']">SEVAC</a></li>
-    </ul>
-</nav> -->
-
 <nav class="menuCSS3 flex justify-content-between p-3" id="menu">
 
         <div class="logo">
             <img src="../../../../assets/img/sideBar/LOGO_COMPLETO.png" alt="LOGO_COMPLETO" width="200">
         </div>
         <!-- Menú de escritorio -->
-        <ul class="menu-items" >
+        <ul class="menu-items uppercase">
             <li><a routerLink="/">Inicio</a></li>
             <li>
                 <a href="#">Ayuntamiento</a>
@@ -39,7 +15,7 @@
                 </ul>
             </li>
             <li><a [routerLink]="['/dif']">DIF</a></li>
-            <li><a [routerLink]="['/obras',0]">Obras</a></li>
+            <li><a [routerLink]="['/obras',0]">Obras públicas</a></li>
             <li>
                 <a href="#">Transparencias</a>
                 <ul>
@@ -52,16 +28,21 @@
 
 <nav class="menuMobil">
     <div>
-        <div class="">
-            <p-button (onClick)="sidebarVisible = true" icon="pi pi-arrow-right" ></p-button>
+        <div class="flex justify-content-between p-3">
+            <div class="w-6">
+                <img src="../../../../assets/img/sideBar/LOGO_COMPLETO.png" alt="LOGO_COMPLETO" width="100%">
+            </div>
+            <div class="my-auto">
+                <p-button (onClick)="sidebarVisible = true" icon="pi pi-bars" ></p-button>
+            </div>
         </div>
 
         <p-sidebar #sidebarRef [(visible)]="sidebarVisible">
             <ng-template pTemplate="headless">
                 <div class="flex flex-column h-full">
                     <div class="flex align-items-center justify-content-between px-4 pt-3 flex-shrink-0">
-                        <span class="inline-flex align-items-center gap-2">
-                            <img src="../../../../assets/img/sideBar/LOGO_COMPLETO.png" alt="LOGO_COMPLETO" width="200">
+                        <span class="inline-flex align-items-center gap-2 w-2">
+                            <img src="../../../../assets/img/sideBar/ICONO.png" alt="LOGO_COMPLETO" width="100%">
                         </span>
                         <span>
                             <p-button type="button" (onClick)="closeCallback($event)" icon="pi pi-times" rounded="true" outlined="true" styleClass="h-2rem w-2rem"></p-button>
@@ -69,7 +50,7 @@
                     </div>
                     <div class="overflow-y-auto">
 
-                        <ul class="list-none p-0 m-0 overflow-hidden">
+                        <ul class="list-none p-0 m-0 overflow-hidden uppercase">
                             <li>
                                 <a routerLink="/" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                     <i class="pi pi-home mr-2"></i>
@@ -120,7 +101,7 @@
                             <li>
                                 <a [routerLink]="['/obras',0]" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                     <i class="pi pi-users mr-2"></i>
-                                    <span class="font-medium">Obras</span>
+                                    <span class="font-medium">Obras públicas</span>
                                 </a>
                             </li>
                             <li>
@@ -160,12 +141,3 @@
         </p-sidebar>
     </div>
 </nav>
-
-
-
-<!-- <a pRipple
-    class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
-    [routerLink]="['/dashboard']">
-    <i class="pi pi-home mr-2"></i>
-    <span class="font-medium">Dashboard</span>
-</a> -->

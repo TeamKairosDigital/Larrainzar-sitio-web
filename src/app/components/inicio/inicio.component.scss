@@ -1,5 +1,37 @@
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 800px; // Ajusta según el tamaño de tu carrusel
+  overflow: hidden;
 
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 160px; // Ajusta la altura del recorte
+    background: rgba(255, 255, 255, 0.4); // Capa blanca translúcida
+    //backdrop-filter: blur(5px); // Opcional, da un efecto de desenfoque
+    clip-path: polygon(0 45%, 100% 45%, 100% 100%, 0% 100%);
+  }
 
+  .overlayp {
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px; // Ajusta la altura del recorte
+    background: white;
+    // clip-path: polygon(0% 30%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0 40%, 0% 100%, 100% 100%);
+  }
+
+  }
+}
 
 .card-container {
     display: flex;
@@ -33,6 +65,7 @@
   span {
       font-size: 14px;
       transition: color 0.3s;
+      color: var(--colorGrisOscuro);
   }
 
   &:hover span {
@@ -40,8 +73,6 @@
   }
   
 }
-
-
 
 
 .card {
@@ -112,15 +143,9 @@
   letter-spacing: 2px
 }
 
-@media(max-width: 991.5px) {
-  .container {
-      margin-top: 20px
-  }
 
-  .container .row .col-lg-4 {
-      margin: 20px 0px
-  }
-}
+
+
 
 
 .image-container {
@@ -137,4 +162,15 @@
   width: 100%; /* La imagen ocupará todo el ancho del contenedor */
   height: 100%; /* La imagen ocupará todo el alto del contenedor */
   object-fit: cover; /* Ajusta la imagen sin deformarla */
+}
+
+
+@media screen and (max-width: 1024px) {
+  .container {
+    margin-top: 20px
+}
+
+.container .row .col-lg-4 {
+    margin: 20px 0px
+}
 }
