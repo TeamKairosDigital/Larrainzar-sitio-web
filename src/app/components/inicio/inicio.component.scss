@@ -168,9 +168,13 @@
 @media screen and (max-width: 1024px) {
   .container {
     margin-top: 20px
-}
+  }
 
-.container .row .col-lg-4 {
-    margin: 20px 0px
-}
+  .container .row .col-lg-4 {
+      margin: 20px 0px
+  }
+
+  .image-wrapper {
+    height: 600px;
+  }
 }

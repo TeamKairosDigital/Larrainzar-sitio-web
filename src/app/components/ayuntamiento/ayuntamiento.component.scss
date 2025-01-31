@@ -39,6 +39,25 @@ h3, p{
 }
 
 /* Estilos para miniaturas */
+
+
+// .thumbnail-container {
+//   cursor: pointer;
+//   padding: 0.5rem;
+//   border-radius: 50%;
+//   transition: transform 0.2s ease-in-out;
+// }
+
+// .thumbnail-container.active-thumbnail {
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+// }
+
+// .thumbnail-image {
+//   width: 120px;
+//   height: 120px;
+//   border-radius: 50%;
+//   object-fit: cover;
+// }
 .thumbnails {
   margin-top: 2rem;
   gap: 1rem;
@@ -46,18 +65,33 @@ h3, p{
 
 .thumbnail-container {
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 1rem;
   border-radius: 50%;
+  margin: auto;
   transition: transform 0.2s ease-in-out;
 }
 
-.thumbnail-container.active-thumbnail {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+/* Aplica el borde de trazos SOLO cuando no está seleccionado */
+.thumbnail-container:not(.active-thumbnail) {
+  border: 2px dashed var(--colorGrisOscuro); /* Color del marco */
+  //padding: 5px; /* Espacio para que el borde no toque la imagen */
+ 
+  &:hover {
+    border: 2px dashed var(--colorAzul); /* Color del marco */
+  }
 }
 
+/* Estilo cuando está seleccionado (sin borde) */
+.thumbnail-container.active-thumbnail {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 1.1rem;
+}
+
+/* Ajustes generales de la imagen */
 .thumbnail-image {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
 }

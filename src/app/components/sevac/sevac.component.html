@@ -12,19 +12,23 @@
             [rowsPerPageOptions]="[5, 10, 15]">
 
             <ng-template pTemplate="caption">
-                <div class="flex align-items-center justify-content-around">
-                    <div>
+                <div class="flex align-items-center md:justify-content-around">
+                    <div class="hidden lg:block">
                         <h3 class="m-0">Administración de documentos SEVAC</h3>
                     </div>
 
-                    <div class="flex align-items-center justify-content-center w-6">
-                        <div>
+                    <div class="block md:flex align-items-center justify-content-center w-auto md:w-6">
+                        <div class="my-3 md:my-0 mr-3 lg:mr-0" >
+                            <label for="inventoryStatus" class="m-2">Buscar por documento:</label>
+                            <input type="text" pInputText placeholder="Balance...." [(ngModel)]="this.DocumentosFiltros.documento" (ngModelChange)="onInputChange($event)" />
+                        </div>
+                        <div class="my-3 md:my-0 mr-3 lg:mr-0" >
                             <label for="inventoryStatus" class="m-2">Año:</label>
                             <p-dropdown [options]="years" [(ngModel)]="selectedYear" optionLabel="viewValue"
                                 placeholder="Selecciona un año" (onChange)="onChange($event, 'year')" />
                         </div>
 
-                        <div>
+                        <div class="my-3 md:my-0 mr-3 lg:mr-0" >
                             <label for="inventoryStatus" class="m-2">Ley:</label>
                             <p-dropdown [options]="leyes" [(ngModel)]="selectedLey" optionLabel="viewValue"
                                 placeholder="Selecciona un año" (onChange)="onChange($event, 'leyes')" />
@@ -93,9 +97,9 @@
                         [(ngModel)]="this.archivoSeleccionado.Anualidad" />
                 </div>
 
-                <!-- <div *ngIf="!EsNuevo" class="w-full my-5 flex align-items-center justify-content-around">
-                    <p-button label="Ver" icon="pi pi-eye" [outlined]="true" (onClick)="verArchivo()" />
-                </div> -->
+                <div class="justify-content-center w-3 mx-auto">
+                    <p-button label="Ver url" icon="pi pi-eye" [outlined]="true" (onClick)="verArchivo()" />
+                </div>
 
                 <p-confirmDialog />
 

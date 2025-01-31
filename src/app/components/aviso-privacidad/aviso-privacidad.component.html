@@ -22,7 +22,7 @@
                         <button 
                             pButton 
                             label="Simplificado"
-                            (click)="descargarArchivo(item.archivos, 1)"
+                            (click)="getArchivo(item.archivos, 1)"
                             [disabled]="!tieneArchivoTipo(item.archivos, 1)"
                             class="col-6 lg:col-6 xl:col-5 Btn-Gris text-sm">
                         </button>
@@ -30,7 +30,7 @@
                         <button 
                             pButton 
                             label="Integral" 
-                            (click)="descargarArchivo(item.archivos, 2)"
+                            (click)="getArchivo(item.archivos, 2)"
                             [disabled]="!tieneArchivoTipo(item.archivos, 2)"
                             class="col-6 lg:col-6 xl:col-5 Btn-Gris text-sm">
                         </button>
@@ -39,6 +39,24 @@
             </div>
         </div>
     </div>
+    
+    <div class="block md:flex justify-content-center my-4">
+        <img src="../../../assets/img/ayuntamiento/icono_correo.png" alt="icono_correo" width="25" height="20" class="mr-2 block my-auto">
+        <p class="font-semibold text-sm md:text-xl text-center" [ngStyle]="{'color': 'var(--colorGrisMenu)'}">Tesoreria_larrainzar&#64;outlook.com</p>
+    </div>
+
+    <p-dialog [(visible)]="fileDialog" [style]="{ width: '800px' }" header="Detalle de archivo" [modal]="true"
+        styleClass="p-fluid">
+        <ng-template pTemplate="content">
+            <div *ngIf="fileUrl" class="mt-4">
+                <iframe [src]="fileUrl" width="100%" height="900px"></iframe>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+            <p-button label="Cerrar" icon="pi pi-times" [text]="true" (onClick)="hideDialog()" />
+        </ng-template>
+    </p-dialog>
 
     <p-toast />
     <div *ngIf="spinner" class="overlay">

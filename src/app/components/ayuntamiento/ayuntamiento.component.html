@@ -14,14 +14,14 @@
       
       <ng-template pTemplate="item" let-person>
         <div class="grid m-0">
-            <p class="text-5xl my-2 p-0 col-12">{{ person.role }}</p>
+            <p class="text-5xl my-2 p-0 col-12 capitalize">{{ person.role }}</p>
             <div class="flex col-12 justify-content-center my-5 grid">
             <div class="col-12 md:col-6 m-auto ">
                 <img [src]="person.image" alt="{{ person.name }}" class="profile-image" />
             </div>
             <div class="col-12 md:col-6 my-auto text-center md:text-left font-italic">
-                <h3 class="text-5xl mt-0 mb-2 font-semibold">{{ person.name }}</h3>
-                <p class="text-xl mb-2">{{ person.role }}</p>
+                <h3 class="text-5xl mt-0 mb-2 font-semibold capitalize">{{ person.name }}</h3>
+                <p class="text-xl mb-2 capitalize">{{ person.role }}</p>
                 <div class="flex mb-2 justify-content-center md:justify-content-start">
                 <img src="../../../assets/img/ayuntamiento/icono_telefono.png" alt="icono_telefono" class="mr-2 block my-auto" width="20px" >
                 <p class="text-xl  my-auto">{{ person.phone }}</p>
@@ -37,7 +37,7 @@
     </p-galleria>
   
     <!-- Miniaturas -->
-    <div class="flex flex-wrap justify-content-center thumbnails" *ngIf="persons.length > 1">
+    <div class="md:w-8 lg:w-7 flex flex-wrap justify-content-center thumbnails mx-auto" *ngIf="persons.length > 1">
       <div 
         *ngFor="let person of persons; let i = index" 
         (click)="setActiveIndex(i)" 

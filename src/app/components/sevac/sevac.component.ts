@@ -98,6 +98,7 @@ export class SevacComponent {
     this.currentYear = today.getFullYear().toString();
 
     this.DocumentosFiltros = {
+      documento: '',
       year: this.currentYear,
       ley: '-1'
     }
@@ -143,6 +144,12 @@ export class SevacComponent {
     ];
   }
 
+  onInputChange(value: string) {
+    if (value.length >= 5 || value.length == 0) { // Ejecuta la función después de 3 caracteres
+      this.onChange(value, 'documento');
+    }
+  }
+
   onChange(event: any, filtro: string): void {
 
     switch (filtro) {
@@ -151,6 +158,9 @@ export class SevacComponent {
         break;
       case 'leyes':
         this.DocumentosFiltros.ley = event.value.value;
+        break
+      case 'documento':
+        this.DocumentosFiltros.documento = event;
         break
     }
 
@@ -243,6 +253,24 @@ export class SevacComponent {
 
   hideDialog() {
     this.fileDialog = false;
+  }
+
+  verArchivo() {
+    // const idArchivo = this.archivoSeleccionado.IdArchivo;
+    // const url = this.router.serializeUrl(
+    //   this.router.createUrlTree(['/pdfview'], { queryParams: { idPdf: idArchivo } })
+    // );
+    // window.open(url, '_blank');
+
+    // const idArchivo = this.archivoSeleccionado.IdArchivo;
+    // const url = this.router.serializeUrl(
+    //   this.router.createUrlTree(['/pdfview', idArchivo])
+    // );
+    // window.open(url, '_blank');
+
+    const idArchivo = this.archivoSeleccionado.IdArchivo;
+    const url = `${window.location.origin}/#/pdfview/${idArchivo}`;
+    window.open(url, '_blank');
   }
 
 }

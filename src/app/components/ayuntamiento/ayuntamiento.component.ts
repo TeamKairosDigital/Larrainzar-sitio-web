@@ -23,39 +23,102 @@ export class AyuntamientoComponent {
       name: 'Andrés Ruiz Gómez',
       role: 'Presidente Municipal',
       phone: '(999) 444 1234',
-      email: 'presidente@larrainzar.gob.mx',
-      image: 'assets/img/ayuntamiento/prueba_2.jpg'
+      email: 'andressruiz87@gmail.com',
+      image: 'assets/img/ayuntamiento/prueba.jpg'
     }
   ];
 
   cabildo = [
     {
-      name: 'José Luis Pérez',
-      role: 'Síndico Municipal',
+      name: 'maria teresa ruiz santiz',
+      role: 'síndico',
       phone: '(999) 444 1234',
-      email: 'cabildo@larrainzar.gob.mx',
+      email: 'rusantizmariateresa@gmail.com',
       image: 'assets/img/ayuntamiento/prueba_2.jpg'
     },
     {
-      name: 'Ángel Hernández',
-      role: 'Síndico Municipal',
+      name: 'bartolo diaz diaz',
+      role: 'tesorero',
       phone: '(999) 333 5678',
-      email: 'finanzas@larrainzar.gob.mx',
+      email: 'bardiazdiaz79@outlook.com',
       image: 'assets/img/ayuntamiento/prueba.jpg'
     },
     {
-      name: 'Liliana Hernández',
-      role: 'Síndico Municipal',
+      name: 'alfonso hermilo hernandez perez',
+      role: 'primer regidor',
       phone: '(999) 444 1234',
-      email: 'cabildo@larrainzar.gob.mx',
+      email: 'alfo_hp@hotmail.com',
+      image: 'assets/img/ayuntamiento/prueba.jpg'
+    },
+    {
+      name: 'andrea marcela teratol gomez',
+      role: '2da regidora',
+      phone: '(999) 333 5678',
+      email: 'teegaa98@gmail.com',
       image: 'assets/img/ayuntamiento/prueba_2.jpg'
     },
     {
-      name: 'Luis Eduardo',
-      role: 'Síndico Municipal',
+      name: 'marcelino ruiz lopez',
+      role: '3er regidor',
       phone: '(999) 333 5678',
-      email: 'cabildo@larrainzar.gob.mx',
+      email: 'Linoruiz1@hotmail.com',
       image: 'assets/img/ayuntamiento/prueba.jpg'
+    },
+    {
+      name: 'andrea lopez gonzalez',
+      role: '4ta regidora',
+      phone: '(999) 333 5678',
+      email: 'andrea06111975@gmail.com',
+      image: 'assets/img/ayuntamiento/prueba_2.jpg'
+    },
+    {
+      name: 'jose luis diaz diaz',
+      role: '5to regidor',
+      phone: '(999) 333 5678',
+      email: 'diazdiazjoseluis465@gmail.com',
+      image: 'assets/img/ayuntamiento/prueba.jpg'
+    },
+    {
+      name: 'maria juliana diaz nuñez',
+      role: '1er reg. suplente',
+      phone: '(999) 333 5678',
+      email: 'mjuliadn.25@gmail.com',
+      image: 'assets/img/ayuntamiento/prueba_2.jpg'
+    },
+    {
+      name: 'juan hernandez diaz',
+      role: '2do reg. suplente',
+      phone: '(999) 333 5678',
+      email: 'herjuandiaz65@gmail.com',
+      image: 'assets/img/ayuntamiento/prueba.jpg'
+    },
+    {
+      name: 'victoria lopez diaz',
+      role: '3er reg. suplente',
+      phone: '(999) 333 5678',
+      email: 'agroinsumoslarrainzar@gmail.com',
+      image: 'assets/img/ayuntamiento/prueba_2.jpg'
+    },
+    {
+      name: 'manuel nuñez gomez',
+      role: 'regidor plurinominal',
+      phone: '(999) 333 5678',
+      email: 'gomez_1521@hotmail.com',
+      image: 'assets/img/ayuntamiento/prueba.jpg'
+    },
+    {
+      name: 'maria magdalena hernandez diaz',
+      role: 'regidor plurinominal',
+      phone: '(999) 333 5678',
+      email: 'mag.mk.94@gmal.com',
+      image: 'assets/img/ayuntamiento/prueba_2.jpg'
+    },
+    {
+      name: 'antonia lopez lopez',
+      role: 'regidor plurinominal',
+      phone: '(999) 333 5678',
+      email: 'antonia2023110995@gmail.com',
+      image: 'assets/img/ayuntamiento/prueba_2.jpg'
     }
   ];
 
