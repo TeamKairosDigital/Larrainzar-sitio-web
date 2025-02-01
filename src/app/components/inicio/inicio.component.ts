@@ -90,6 +90,11 @@ export class InicioComponent implements OnInit{
     }
   ];
 
+  clonedImages: any[] = [];
+  currentIndex = 1;
+  intervalId: any;
+  isTransitionEnabled = true;
+
   constructor(
     private inicioServices: InicioService, 
     private sanitizer: DomSanitizer,
@@ -99,7 +104,11 @@ export class InicioComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    this.inicioServices.getImagesCarrusel().then((images) => (this.carrusel = images));
+    this.inicioServices.getImagesCarrusel().then((images) => {
+      this.carrusel = images;
+      this.prepareImages();
+      this.startAutoSlide();
+    });
 
     this.iconosDatos = [
       {
@@ -241,4 +250,58 @@ export class InicioComponent implements OnInit{
     // console.log('Obra seleccionada:', this.obraSeleccionada);
   }
 
+  prepareImages() {
+    if (this.carrusel && this.carrusel.length > 0) {
+      this.clonedImages = [
+        this.carrusel[this.carrusel.length - 1],
+        ...this.carrusel,
+        this.carrusel[0]
+      ];
+    }
+  }
+
+  startAutoSlide() {
+    this.intervalId = setInterval(() => {
+      this.nextSlide();
+    }, 3000);
+  }
+
+  pauseAutoSlide() {
+    clearInterval(this.intervalId);
+  }
+
+  nextSlide() {
+    if (this.currentIndex < this.clonedImages.length - 1) {
+      this.currentIndex++;
+    }
+    this.resetAutoSlide();
+    if (this.currentIndex === this.clonedImages.length - 1) {
+      setTimeout(() => {
+        this.isTransitionEnabled = false;
+        this.currentIndex = 1;
+      }, 500);
+    } else {
+      this.isTransitionEnabled = true;
+    }
+  }
+
+  prevSlide() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
+    this.resetAutoSlide();
+    if (this.currentIndex === 0) {
+      setTimeout(() => {
+        this.isTransitionEnabled = false;
+        this.currentIndex = this.carrusel ? this.carrusel.length : 0;
+      }, 500);
+    } else {
+      this.isTransitionEnabled = true;
+    }
+  }
+
+  resetAutoSlide() {
+    clearInterval(this.intervalId);
+    this.startAutoSlide();
+  }
 }

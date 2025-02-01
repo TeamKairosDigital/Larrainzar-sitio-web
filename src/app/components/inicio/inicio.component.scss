@@ -1,7 +1,76 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  margin: auto;
+  overflow: hidden;
+
+  .carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-item {
+    min-width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transform-origin: center;
+    animation: zoomInOut 10s infinite ease-in-out;
+  }
+
+  /* Definición de la animación de zoom */
+  @keyframes zoomInOut {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1); /* Zoom-in */
+    }
+    100% {
+      transform: scale(1); /* Zoom-out */
+    }
+  }
+
+  button {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-100%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 50px;
+    // height: 40px;
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
 .image-wrapper {
   position: relative;
   width: 100%;
-  height: 800px; // Ajusta según el tamaño de tu carrusel
+  height: auto; // Ajusta según el tamaño de tu carrusel
   overflow: hidden;
 
   &::after {
@@ -18,17 +87,37 @@
 
   .overlayp {
 
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 120px; // Ajusta la altura del recorte
-    background: white;
-    // clip-path: polygon(0% 30%, 100% 0%, 100% 100%, 0% 100%);
-    clip-path: polygon(0 40%, 0% 100%, 100% 100%);
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px; // Ajusta la altura del recorte
+      background: white;
+      // clip-path: polygon(0% 30%, 100% 0%, 100% 100%, 0% 100%);
+      clip-path: polygon(0 40%, 0% 100%, 100% 100%);
+    }
+
   }
+
+  @media (max-width: 768px) {
+    .carousel-container {
+      height: 50vh; // Menor altura en pantallas pequeñas
+    }
+  }
+
+  @media (max-width: 450px) {
+    .carousel-container {
+      height: 35vh; // Menor altura en pantallas pequeñas
+    }
+
+    .carousel-container {
+      button {
+        padding: 5px;
+        width: 30px;
+      }
+    }
 
   }
 }
@@ -165,6 +254,12 @@
 }
 
 
+
+
+
+
+
+
 @media screen and (max-width: 1024px) {
   .container {
     margin-top: 20px
@@ -174,7 +269,14 @@
       margin: 20px 0px
   }
 
-  .image-wrapper {
-    height: 600px;
+  // .image-wrapper {
+  //   height: 600px;
+  // }
+
+  .carousel-container {
+    button {
+      font-size: 15px;
+    }
   }
 }
+
