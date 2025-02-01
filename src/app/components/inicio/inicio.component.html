@@ -1,9 +1,9 @@
 <app-side-bar></app-side-bar>
 
-<div>
+<div class="overflow-hidden">
 
     <!-- CARRUSEL -->
-    <div class="image-wrapper">
+    <div class="image-wrapper" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
         <div class="carousel-container">
             <div class="carousel-container" (mouseenter)="pauseAutoSlide()" (mouseleave)="startAutoSlide()">
                 <div class="carousel" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'" [style.transition]="isTransitionEnabled ? 'transform 0.5s ease-in-out' : 'none'">
@@ -20,9 +20,9 @@
 
     <!-- DATOS -->
     <div class="my-8 card-container flex">
-        <div *ngFor="let item of iconosDatos; let i = index" class="cardData" 
+        <div *ngFor="let item of iconosDatos; let i = index" class="cardData"
              (mouseover)="onHover(i, true)" (mouseout)="onHover(i, false)">
-          <div class="align-items-center gap-3">
+          <div class="align-items-center gap-3"  data-aos="fade-up" data-aos-duration="1000">
             <object #icono [attr.data]="item.svgUrl" type="image/svg+xml" class="logo"></object>
             <span>{{ item.desc }}</span>
           </div>
@@ -30,7 +30,7 @@
     </div>
       
     <!-- PAGO PREDIAL -->
-    <div class="my-6 p-6"  [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);">
+    <div class="my-6 p-6"  [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);" data-aos="fade-up" data-aos-duration="1000">
         <div class="block md:flex justify-content-center my-3"> 
             <h2 class="text-6xl font-normal my-0 md:mr-2">
                 Realiza tu 
@@ -61,12 +61,12 @@
     <!-- DIF -->
     <div class="my-6 w-full">
         <div class="flex justify-content-center"> 
-            <h2 class="text-6xl font-normal my-6" style="color: var(--colorGrisOscuro);">
+            <h2 class="text-6xl font-normal my-6" style="color: var(--colorGrisOscuro);"  data-aos="zoom-in" data-aos-duration="1000">
                 Destacados
             </h2>
         </div>
         <div class="flex flex-wrap w-full">
-            <div *ngFor="let service of serviciosDIF" class="col-12 md:col-4 p-0">
+            <div *ngFor="let service of serviciosDIF" class="col-12 md:col-4 p-0" data-aos="zoom-in-right" data-aos-duration="1000">
               <div class="card p-0">
                 <div class="card-image">
                   <img [src]="service.image" [alt]="service.name">
@@ -82,13 +82,13 @@
       
     <!-- NOTICIAS -->
     <div class="my-6 mx-auto w-11 md:w-8">
-        <div class="flex justify-content-center"> 
+        <div class="flex justify-content-center" data-aos="zoom-in" data-aos-duration="1000"> 
             <h2 class="text-6xl font-normal my-6" style="color: var(--colorGrisOscuro);">
                 Noticias
             </h2>
         </div>
 
-        <p-carousel 
+        <p-carousel data-aos="zoom-out" data-aos-duration="1000"
             [value]="obras"
             [numVisible]="3" 
             [numScroll]="3" 
@@ -118,7 +118,7 @@
 
     <!-- REDES SOCIALES -->
     <div class="my-6 p-6" [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);">
-        <div class="block md:flex justify-content-center my-3"> 
+        <div class="block md:flex justify-content-center my-3" data-aos="zoom-out-down" data-aos-duration="1000"> 
             <h2 class="text-6xl font-normal my-0 md:mr-2" >
                 ¡Síguenos
             </h2>
@@ -126,10 +126,10 @@
                 en Redes!
             </h2>
         </div>                      
-        <div class="flex justify-content-center w-full my-6">
+        <div class="flex justify-content-center w-full my-6" data-aos="zoom-out-up" data-aos-duration="1000">
             <a href="#" class="Btn-Azul mr-4">Facebook</a>
         </div>
-        <div class="my-6 col-12 md:col-4 w-5 md:w-2 mx-auto">
+        <div class="my-6 col-12 md:col-4 w-5 md:w-2 mx-auto" data-aos="zoom-out-up" data-aos-duration="1000">
             <img src="{{icono_casa}}" alt="icono_casa" width="100%" class="block">
         </div>
     </div>
@@ -137,7 +137,7 @@
     <!-- OTRAS EMPRESAS -->
     <div class="my-6">
         <div class="flex flex-wrap justify-content-between w-full">
-          <div *ngFor="let empresa of empresasLogo" class="col-12 md:col-4 p-3">
+          <div *ngFor="let empresa of empresasLogo" class="col-12 md:col-4 p-3" data-aos="fade-up" data-aos-duration="1000">
             <div class="text-center">
               <img [src]="empresa.image" [alt]="empresa.name" class="block mx-auto" [width]="empresa.width" />
             </div>
