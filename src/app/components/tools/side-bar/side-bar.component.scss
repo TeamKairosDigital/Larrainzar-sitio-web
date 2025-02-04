@@ -1,7 +1,7 @@
 .menuCSS3 {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 3;
     background-color: var(--colorBlanco);
     overflow: visible;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -15,7 +15,7 @@
         }
     }
 
-    .menu-items {
+    .menu-items {   
         display: flex;
         padding: 0;
         margin: 0;
@@ -85,7 +85,7 @@
                     margin: 0 0;
                     a {
                         color: var(--colorGris);
-                        padding: 0.7rem 1rem;
+                        padding: 0.7rem 0;
                         width: 100%;
                         // font-size: 0.9rem;
                         display: block;
@@ -126,13 +126,38 @@
 
 .menuMobil{
     display: none;
+    position: sticky;
+    top: 0;
+    overflow: visible;
+    background-color: var(--colorBlanco);
+    z-index: 3 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
     ul li a {
         text-decoration: none;
     }
 }
 
+.custom-button {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--colorCrema); /* Color de fondo */
+    padding: 0.5rem 1rem; /* Espaciado interno */
 
+    i{
+        font-size: 1.1rem;
+    }
+
+    &:focus {
+        background-color: #b3a188;
+    }
+}
+  
+.active-link {
+    font-weight: bold;
+    color: var(--colorCrema);
+    border-bottom: 2px solid var(--colorCrema);
+}
 
 @media screen and (max-width: 1024px) {
     /* Ocultar el menú de escritorio en pantallas pequeñas */

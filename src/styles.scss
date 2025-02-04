@@ -72,6 +72,7 @@ html, body {
   }
 }
 
+
 .overlay {
   position: fixed; /* Para que el overlay ocupe toda la pantalla */
   top: 0;
@@ -95,3 +96,41 @@ html, body {
   color: var(--colorAzul);
   background: rgba(255, 255, 255, 0.4);
 }
+
+
+@keyframes floatAnimation {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(15px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
+.float-animation {
+  animation: floatAnimation 2s ease-in-out infinite;
+}
+
+@keyframes smoothRotate {
+  0% {
+    transform: rotate(-3deg);
+  }
+  50% {
+      transform: rotate(3deg);
+  }
+  100% {
+      transform: rotate(-3deg);
+}
+}
+
+.float-rotate-animation {
+  animation: smoothRotate 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+
+
+

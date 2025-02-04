@@ -1,5 +1,6 @@
 <app-side-bar></app-side-bar>
   
+<div class="overflow-hidden">
   <div class="pt-4 pb-6 w-full" style="text-align: center;">
     <!-- Galleria -->
     <p-galleria 
@@ -14,21 +15,21 @@
       
       <ng-template pTemplate="item" let-person>
         <div class="grid m-0">
-            <p class="text-5xl my-2 p-0 col-12 capitalize">{{ person.role }}</p>
+            <p class="text-5xl my-2 p-0 col-12 capitalize" data-aos="fade-up" data-aos-duration="1000">{{ person.role }}</p>
             <div class="flex col-12 justify-content-center my-5 grid">
             <div class="col-12 md:col-6 m-auto ">
-                <img [src]="person.image" alt="{{ person.name }}" class="profile-image" />
+                <img [src]="person.image" alt="{{ person.name }}" class="profile-image" data-aos="fade-right" data-aos-duration="1000"/>
             </div>
             <div class="col-12 md:col-6 my-auto text-center md:text-left font-italic">
-                <h3 class="text-5xl mt-0 mb-2 font-semibold capitalize">{{ person.name }}</h3>
-                <p class="text-xl mb-2 capitalize">{{ person.role }}</p>
-                <div class="flex mb-2 justify-content-center md:justify-content-start">
-                <img src="../../../assets/img/ayuntamiento/icono_telefono.png" alt="icono_telefono" class="mr-2 block my-auto" width="20px" >
-                <p class="text-xl  my-auto">{{ person.phone }}</p>
+                <h3 class="text-5xl mt-0 mb-2 font-semibold capitalize" data-aos="fade-left" data-aos-duration="1000">{{ person.name }}</h3>
+                <p class="text-xl mb-2 capitalize" data-aos="fade-left" data-aos-duration="1000">{{ person.role }}</p>
+                <div class="flex mb-2 justify-content-center md:justify-content-start" data-aos="fade-left" data-aos-duration="1000">
+                  <img src="../../../assets/img/ayuntamiento/icono_telefono.png" alt="icono_telefono" class="mr-2 block my-auto" width="20px" >
+                  <p class="text-xl  my-auto">{{ person.phone }}</p>
                 </div>
-                <div class="flex mb-2 justify-content-center md:justify-content-start">
-                <img src="../../../assets/img/ayuntamiento/icono_correo.png" alt="icono_correo" class="mr-2 block my-auto" width="20px" >
-                <p class="text-xl  my-auto">{{ person.email }}</p>
+                  <div class="flex mb-2 justify-content-center md:justify-content-start" data-aos="fade-left" data-aos-duration="1000">
+                  <img src="../../../assets/img/ayuntamiento/icono_correo.png" alt="icono_correo" class="mr-2 block my-auto" width="20px" >
+                  <p class="text-xl  my-auto">{{ person.email }}</p>
                 </div>
             </div>
             </div>
@@ -42,10 +43,11 @@
         *ngFor="let person of persons; let i = index" 
         (click)="setActiveIndex(i)" 
         [ngClass]="{'active-thumbnail': activeIndex === i}"
-        class="thumbnail-container">
+        class="thumbnail-container" data-aos="flip-right" data-aos-duration="1000">
         <img [src]="person.image" alt="{{ person.name }}" class="thumbnail-image block my-auto" />
       </div>
     </div>
   </div>
+</div>
   
 <app-footer></app-footer>

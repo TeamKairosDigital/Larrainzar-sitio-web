@@ -69,7 +69,7 @@ export class ObrasComponent {
     }
 
     // Obtener lista de obras
-    getAllObras(): void {
+    async getAllObras(): Promise<void> {
 
       this.spinner = true;
       this.obrasServices.getAll().subscribe({
@@ -138,6 +138,12 @@ export class ObrasComponent {
     selectObra(obra: obrasDto): void {
       this.obraSeleccionada = { ...obra };
       //console.log('Obra seleccionada:', this.obraSeleccionada);
+        // Hacer scroll hacia arriba después de seleccionar la obra
+      this.spinner = true;
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          this.spinner = false;
+        }, 100);
     }
 
     private selectObraURL(){
@@ -153,6 +159,11 @@ export class ObrasComponent {
           this.selectObra(obra);
         }
       }
+
+       // Hacer scroll hacia arriba después de seleccionar la obra
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
 
 }

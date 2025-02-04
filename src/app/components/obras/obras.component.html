@@ -1,31 +1,33 @@
 <app-side-bar></app-side-bar>
 
+<div class="overflow-hidden">
     <!-- CONTENIDO POR CAD OBRA -->
-     <div class="px-4 md:px-8 py-5" [ngStyle]="{'background-color': 'var(--colorGris)', 'color': 'var(--colorGrisMenu)'}">
-        <div class="flex py-2">
+    <div class="px-4 md:px-8 py-5" [ngStyle]="{'background-color': 'var(--colorGris)', 'color': 'var(--colorGrisMenu)'}">
+        <div class="flex py-2" data-aos="fade-right" data-aos-duration="1000">
             <p class="font-semibold">{{ obraSeleccionada.fechaCreacion }}</p>
             <p class="mx-1">/</p>
             <p class="font-italic">{{ obraSeleccionada.autor }}</p>
         </div>
-        <div class="py-2">
+        <div class="py-2" data-aos="zoom-in" data-aos-duration="1000">
             <h1 class="text-4xl font-bold text-center">{{ obraSeleccionada.nombre }}</h1>
         </div>
-        <div class="py-2 w-10 md:w-6 mx-auto">
+        <div class="py-2 w-10 md:w-6 mx-auto" data-aos="fade-up" data-aos-duration="1000">
             <img [src]="obraSeleccionada.imagen" [alt]="obraSeleccionada.nombre" width="100%" class="block mx-auto">
         </div>
-        <div class="py-2">
-            <p [innerHTML]="obraSeleccionada.descripcion"></p>
+        <div class="py-2" data-aos="zoom-in" data-aos-duration="1000">
+            <p class="text-justify" [innerHTML]="obraSeleccionada.descripcion"></p>
         </div>
     </div>
 
     <!-- NOTICIAS -->
     <div class="my-8 mx-auto w-11 md:w-8">
         <p-carousel 
-          [value]="obras" 
-          [numVisible]="3" 
-          [numScroll]="3"
-          [circular]="false" 
-          [responsiveOptions]="responsiveOptions">
+            [value]="obras" 
+            [numVisible]="3" 
+            [numScroll]="3"
+            [circular]="false" 
+            [responsiveOptions]="responsiveOptions"
+            data-aos="fade-up" data-aos-duration="1000">
             <ng-template let-obra pTemplate="item">
                 <div class="m-3 cursor-pointer" (click)="selectObra(obra)">
                     <div class="mb-3">
@@ -34,7 +36,7 @@
                             [src]="obra.imagen"
                             [alt]="obra.nombre"
                             class="image"
-                             />
+                                />
                         </div>
                     </div>
                     <p class="mb-2 font-medium text-xs">
@@ -50,7 +52,7 @@
 
     <!-- REDES SOCIALES -->
     <div class="mt-6 pt-6" [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);">
-        <div class="block md:flex justify-content-center my-3"> 
+        <div class="block md:flex justify-content-center my-3" data-aos="fade-right" data-aos-duration="1000"> 
             <h2 class="text-6xl font-normal my-0 md:mr-2 text-center">
                 ¡Síguenos
             </h2>
@@ -58,10 +60,10 @@
                 en Redes!
             </h2>
         </div>                      
-        <div class="flex justify-content-center w-full my-6">
+        <div class="flex justify-content-center w-full my-6" data-aos="zoom-in" data-aos-duration="1000">
             <a href="#" class="Btn-Azul mr-4">Facebook</a>
         </div>
-        <div class="mt-6 col-12 md:col-4 w-5 md:w-2 mx-auto">
+        <div class="mt-6 col-12 md:col-4 w-5 md:w-2 mx-auto float-animation" data-aos="fade-up" data-aos-duration="1000">
             <!-- CAMBIAR IMAGEN -->
             <img src="../../../assets/img/dif/redes_dif.png" alt="icono_casa" width="100%" class="block">
         </div>
@@ -72,5 +74,6 @@
         <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
             animationDuration=".5s" />
     </div>
+</div>
 
 <app-footer></app-footer>
