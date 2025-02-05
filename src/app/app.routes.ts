@@ -6,6 +6,7 @@ import { ObrasComponent } from './components/obras/obras.component';
 import { AvisoPrivacidadComponent } from './components/aviso-privacidad/aviso-privacidad.component';
 import { SevacComponent } from './components/sevac/sevac.component';
 import { PdfViewComponent } from './components/pdf-view/pdf-view.component';
+import { OtrosDocumentosComponent } from './components/otros-documentos/otros-documentos.component';
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
@@ -13,6 +14,7 @@ export const routes: Routes = [
     { path: 'dif', component: DifComponent },
     { path: 'obras/:idObra', component: ObrasComponent },
     { path: 'avisoPrivacidad', component: AvisoPrivacidadComponent },
+    { path: 'otrosDocumentos', component: OtrosDocumentosComponent },
     { path: 'sevac', component: SevacComponent },
     { path: 'pdfview/:idPdf', component: PdfViewComponent },
     { path: '**', redirectTo: 'inicio', pathMatch: 'full' } 

@@ -255,7 +255,20 @@
 
 
 
+.hoverIMG{
 
+  background-color: var(--colorBlanco);
+  border-radius: 8px;
+  padding: .5rem;
+  width: auto;
+  text-align: center;
+  transition: box-shadow 0.3s, transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+}
 
 
 
@@ -277,6 +290,11 @@
     button {
       font-size: 15px;
     }
+  }
+
+  .hoverIMG{
+    padding: 0;
+    width: 10%;
   }
 }
 

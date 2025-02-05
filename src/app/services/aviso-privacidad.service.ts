@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiResponse } from '../models/ApiResponse';
 import { Observable } from 'rxjs';
 import { AvisoPrivacidadDto } from '../models/input/avisoPrivacidad.dto';
+import { OtrosDocumentosDto } from '../models/input/otrosDocumentos.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,16 @@ export class AvisoPrivacidadService {
 
   getAvisoPrivacidadArchivoWEB(id: number): Observable<ApiResponse<string>> {
     return this.http.get<ApiResponse<string>>(`${this.apiUrl}/getAvisoPrivacidadArchivoWEB/${id}`);
+  }
+
+
+  // Otros documentos
+  getOtrosDocumentos(): Observable<ApiResponse<OtrosDocumentosDto[]>> {
+    return this.http.get<ApiResponse<OtrosDocumentosDto[]>>(`${this.apiUrl}/getOtrosDocumentos`);
+  }
+
+  getOtroDocumentorchivoWEB(id: number): Observable<ApiResponse<string>> {
+    return this.http.get<ApiResponse<string>>(`${this.apiUrl}/getOtroDocumentorchivoWEB/${id}`);
   }
 
 }

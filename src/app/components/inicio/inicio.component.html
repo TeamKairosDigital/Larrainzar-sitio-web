@@ -30,13 +30,13 @@
     </div>
       
     <!-- PAGO PREDIAL -->
-    <div class="my-6 p-6" [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);" data-aos="fade-up" data-aos-duration="1000">
+    <!-- <div class="my-6 p-6" [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);" data-aos="fade-up" data-aos-duration="1000">
         <div class="block md:flex justify-content-center my-3"> 
             <h2 class="text-6xl font-normal my-0 md:mr-2">
-                Realiza tu 
+                Ver 
             </h2>
             <h2 class="text-6xl font-bold font-italic my-0">
-                pago Predial
+                otros documentos
             </h2>
         </div>
         <div class="block md:flex justify-content-center -ml-0 md:-ml-8">
@@ -53,6 +53,29 @@
                 <div class="flex justify-content-center w-full">
                     <a href="#" class="Btn-Azul mr-4">Realiza pago</a>
                     <a href="#" class="Btn-Blanco">Ver tutorial</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="my-6 p-6" [ngStyle]="{'background-color': 'var(--colorGris)'}" style="color: var(--colorGrisOscuro);" data-aos="fade-up" data-aos-duration="1000">
+        <div class="block md:flex justify-content-center my-3"> 
+            <h2 class="text-6xl font-normal my-0 md:mr-2">
+                Ver 
+            </h2>
+            <h2 class="text-6xl font-bold font-italic my-0">
+                otros documentos
+            </h2>
+        </div>
+        <div class="block md:flex justify-content-center">
+            <div class="col-12 md:col-6 md:w-5 text-xl text-xl flex flex-column justify-content-center align-items-center mx-auto md:mx-0">
+                <!-- <div class="mb-6">
+                    <p class="line-height-2 ">
+                        ¡Ya puedes realizar tu pago a través de nuestra plataforma! 
+                        Te sugerimos contar con tu línea de captura o clave catastral.
+                    </p>
+                </div> -->
+                <div class="flex justify-content-center w-full">
+                    <a [routerLink]="['/avisoPrivacidad']" class="Btn-Azul mr-4">Otros documentos</a>
                 </div>
             </div>
         </div>
@@ -127,9 +150,9 @@
             </h2>
         </div>                      
         <div class="flex justify-content-center w-full my-6" data-aos="zoom-out-up" data-aos-duration="1000">
-            <a href="#" class="Btn-Azul mr-4">Facebook</a>
+            <a href="https://www.facebook.com/turismolarrainzar?rdid=UzF6qN1hqmKPEpqN&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1YJXX1vXYN%2F#" target="_blank" class="Btn-Azul mr-4">Facebook</a>
         </div>
-        <div class="my-6 col-12 md:col-4 w-5 md:w-2 mx-auto" data-aos="zoom-out-up" data-aos-duration="1000">
+        <div class="my-6 col-12 md:col-4 w-12 md:w-4 mx-auto float-animation" data-aos="zoom-out-up" data-aos-duration="1000">
             <img src="{{icono_casa}}" alt="icono_casa" width="100%" class="block">
         </div>
     </div>
@@ -138,8 +161,12 @@
     <div class="my-6">
         <div class="flex flex-wrap justify-content-between w-full">
           <div *ngFor="let empresa of empresasLogo" class="col-12 md:col-4 p-3" data-aos="fade-up" data-aos-duration="1000">
-            <div class="text-center">
-              <img [src]="empresa.image" [alt]="empresa.name" class="block mx-auto" [width]="empresa.width" />
+            <div class="text-center md:text-left lg:text-center">
+                <figure class="block md:inline-block hoverIMG">
+                    <a [href]="empresa.url" target="_blank" class="my-auto">
+                        <img [src]="empresa.image" [alt]="empresa.name" class="block w-12rem md:8rem lg:w-17rem" width="100%" />
+                    </a>
+                </figure>
             </div>
           </div>
         </div>

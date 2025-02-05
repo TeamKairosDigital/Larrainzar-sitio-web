@@ -61,32 +61,38 @@ export class InicioComponent implements OnInit{
     {
       image: 'assets/img/intro/transparencia.png',
       name: 'transparencia',
-      width: '300'
+      width: '300',
+      url: 'https://www.plataformadetransparencia.org.mx/Inicio'
     },
     {
       image: 'assets/img/intro/inai-logo.png',
       name: 'inai',
-      width: '300'
+      width: '300',
+      url: 'https://home.inai.org.mx/'
     },
     {
       image: 'assets/img/intro/itipch.png',
       name: 'itipch',
-      width: '250'
+      width: '250',
+      url: 'https://itaipchiapas.org.mx/'
     },
     {
       image: 'assets/img/intro/consulta.png',
       name: 'consulta',
-      width: '300'
+      width: '300',
+      url: 'https://consultapublicamx.plataformadetransparencia.org.mx/vut-web/?idSujetoObigadoParametro=1266&idEntidadParametro=7'
     },
     {
       image: 'assets/img/intro/SISTEMA-NACIONAL-DE-TRASNPARENCIA.png',
       name: 'SISTEMA-NACIONAL-DE-TRASNPARENCIA',
-      width: '300'
+      width: '300',
+      url: 'https://snt.org.mx/'
     },
     {
-      image: 'assets/img/intro/sevac.png',
+      image: 'assets/img/intro/sevac_chico.png',
       name: 'sevac',
-      width: '150'
+      width: '300',
+      url: ''
     }
   ];
 
@@ -129,7 +135,7 @@ export class InicioComponent implements OnInit{
       },
     ];
 
-    this.icono_casa = 'assets/img/intro/icono_casa.png';
+    this.icono_casa = 'assets/img/intro/mockup_redes.png';
 
     this.responsiveOptions = [
         {
@@ -263,7 +269,7 @@ export class InicioComponent implements OnInit{
   startAutoSlide() {
     this.intervalId = setInterval(() => {
       this.nextSlide();
-    }, 3000);
+    }, 4000);
   }
 
   pauseAutoSlide() {
