@@ -14,7 +14,6 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),  // Usar HashLocationStrategy
     provideAnimations(),
     provideHttpClient(),
-    { provide: LocationStrategy, useClass: HashLocationStrategy },  // Especificar HashLocationStrategy
   ]
 })
   .catch((err) => console.error(err));

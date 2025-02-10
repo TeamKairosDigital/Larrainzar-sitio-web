@@ -269,7 +269,7 @@ export class SevacComponent {
     // window.open(url, '_blank');
 
     const idArchivo = this.archivoSeleccionado.IdArchivo;
-    const url = `${window.location.origin}/#/pdfview/${idArchivo}`;
+    const url = `${window.location.origin}/pdfview/${idArchivo}`;
     window.open(url, '_blank');
   }
 
