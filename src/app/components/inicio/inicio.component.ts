@@ -1,20 +1,21 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ImportsModule } from '../../imports';
 import { SideBarComponent } from '../tools/side-bar/side-bar.component';
 
 import { InicioService } from '../../services/inicio.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { obrasDto } from '../../models/output/obras.dto';
 import { FooterComponent } from "../tools/footer/footer.component";
 import { ObrasService } from '../../services/obras.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [ImportsModule, SideBarComponent, HttpClientModule, FooterComponent],
+  imports: [HttpClientModule, ImportsModule, SideBarComponent, FooterComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss',
   providers: [SideBarComponent, FooterComponent, MessageService]
@@ -102,11 +103,13 @@ export class InicioComponent implements OnInit{
   isTransitionEnabled = true;
 
   constructor(
+    private http: HttpClient,
     private inicioServices: InicioService, 
     private sanitizer: DomSanitizer,
     private obrasServices: ObrasService,
     private messageService: MessageService,
     private router: Router,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {}
 
   ngOnInit() {
@@ -158,71 +161,137 @@ export class InicioComponent implements OnInit{
     this.getAllObras();
   }
 
+  // ngAfterViewInit() {
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     this.iconoElements?.forEach((icono) => {
+  //       const svgElement = icono.nativeElement.contentDocument;
+  //       if (svgElement) {
+  //         const paths = svgElement.querySelectorAll('path');
+  //         paths.forEach((path: any) => {
+  //           path.setAttribute('fill', '#919191'); // Inicializa con el color negro
+  //         });
+  //       }
+  //     });
+  //   }
+
+  // }
+
   ngAfterViewInit() {
-    this.iconoElements?.forEach((icono) => {
-      const svgElement = icono.nativeElement.contentDocument;
-      if (svgElement) {
-        const paths = svgElement.querySelectorAll('path');
-        paths.forEach((path: any) => {
-          path.setAttribute('fill', '#919191'); // Inicializa con el color negro
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.iconoElements?.forEach((icono) => {
+          const nativeElement = icono.nativeElement;
+  
+          if (nativeElement && nativeElement.contentDocument) {
+            const paths = nativeElement.contentDocument.querySelectorAll('path');
+            paths.forEach((path: any) => {
+              path.setAttribute('fill', '#919191'); // Color inicial
+            });
+          } else {
+            console.warn('El SVG aún no está listo', nativeElement);
+          }
         });
-      }
-    });
-  }
+      }, 500); // Esperar para asegurar que el ViewChildren esté listo
+    }
+  }  
+  
 
   // Cambia el color cuando se hace hover
   onHover(index: number, isHovering: boolean) {
-    const iconoElement = this.iconoElements?.toArray()[index]?.nativeElement.contentDocument;
-    if (iconoElement) {
-      const paths = iconoElement.querySelectorAll('path');
-      paths.forEach((path: any) => {
-        if (isHovering) {
-          path.setAttribute('fill', '#0745BF'); // Cambia a otro color
-        } else {
-          path.setAttribute('fill', '#919191'); // Vuelve al color original al quitar el hover
-        }
-      });
+    if (isPlatformBrowser(this.platformId)) {
+      const iconoElement = this.iconoElements?.toArray()[index]?.nativeElement.contentDocument;
+      if (iconoElement) {
+        const paths = iconoElement.querySelectorAll('path');
+        paths.forEach((path: any) => {
+          if (isHovering) {
+            path.setAttribute('fill', '#0745BF'); // Cambio a otro color
+          } else {
+            path.setAttribute('fill', '#919191'); // Color original
+          }
+        });
+      }
     }
   }
+  
 
 
   // Obtener lista de obras
-  getAllObras(): void {
+  // getAllObras(): void {
 
+  //   this.spinner = true;
+  //   this.obrasServices.getAll().subscribe({
+  //     next: (response) => {
+  //       if (response.success) {
+  //         this.obras = response.data || [];
+  //         this.obras.forEach(async (element) => {
+  //           element.descripcion = this.sanitizer.bypassSecurityTrustHtml(element.descripcion || '') as unknown as string;
+  //           const mimeType = this.detectMimeType(element.imagenUrl); // Detectar MIME dinámicamente
+  //           const blob = this.base64ToBlob(element.imagenUrl, mimeType);
+  //           const url = URL.createObjectURL(blob);
+  //           element.imagen = this.sanitizer.bypassSecurityTrustResourceUrl(url); // Esto ahora usará un URL seguro
+
+  //         });
+  //         // console.log(this.obras);
+  //         // this.messageService.add({ severity: 'success', summary: 'Guardado', detail: response.message, life: 10000 });
+  //       } else {
+  //         this.spinner = false;
+  //         this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message, life: 10000 });
+  //       }
+  //       this.spinner = false; // Detén el spinner en ambos casos
+  //     },
+  //     error: (error) => {
+  //       // Maneja el error del backend y muestra un mensaje
+  //       this.messageService.add({
+  //         severity: 'error',
+  //         summary: 'Error',
+  //         detail: error.error.message || 'Error con el servidor',
+  //         life: 10000
+  //       });
+  //       this.spinner = false; // Detén el spinner en caso de error
+  //     },
+  //   });
+
+  // }
+  async getAllObras(): Promise<void> {
     this.spinner = true;
     this.obrasServices.getAll().subscribe({
-      next: (response) => {
+      next: async (response) => {
         if (response.success) {
           this.obras = response.data || [];
-          this.obras.forEach(async (element) => {
+    
+          for (const element of this.obras) {
             element.descripcion = this.sanitizer.bypassSecurityTrustHtml(element.descripcion || '') as unknown as string;
-            const mimeType = this.detectMimeType(element.imagenUrl); // Detectar MIME dinámicamente
-            const blob = this.base64ToBlob(element.imagenUrl, mimeType);
-            const url = URL.createObjectURL(blob);
-            element.imagen = this.sanitizer.bypassSecurityTrustResourceUrl(url); // Esto ahora usará un URL seguro
-
-          });
-          // console.log(this.obras);
-          // this.messageService.add({ severity: 'success', summary: 'Guardado', detail: response.message, life: 10000 });
+    
+            if (isPlatformBrowser(this.platformId)) { // Aseguramos que solo se ejecuta en el navegador
+              try {
+                const mimeType = this.detectMimeType(element.imagenUrl);
+                const blob = this.base64ToBlob(element.imagenUrl, mimeType);
+                const url = URL.createObjectURL(blob);
+                element.imagen = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+              } catch (error) {
+                console.error("Error al procesar la imagen", error);
+                element.imagen = null;
+              }
+            }
+          }
         } else {
-          this.spinner = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message, life: 10000 });
         }
-        this.spinner = false; // Detén el spinner en ambos casos
+    
+        this.spinner = false; // Detenemos el spinner cuando los datos se han cargado
       },
       error: (error) => {
-        // Maneja el error del backend y muestra un mensaje
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: error.error.message || 'Error con el servidor',
+          detail: error.error?.message || 'Error al obtener las obras',
           life: 10000
         });
-        this.spinner = false; // Detén el spinner en caso de error
+        this.spinner = false; // Detenemos el spinner en caso de error
       },
     });
-
   }
+  
 
   // conversion de base64 para archivos
   private base64ToBlob(base64: string, mimeType: string): Blob {
@@ -259,9 +328,9 @@ export class InicioComponent implements OnInit{
   prepareImages() {
     if (this.carrusel && this.carrusel.length > 0) {
       this.clonedImages = [
-        this.carrusel[this.carrusel.length - 1],
-        ...this.carrusel,
-        this.carrusel[0]
+        this.carrusel[this.carrusel.length - 1], // Última imagen
+        ...this.carrusel, // Carrusel actual
+        this.carrusel[0]  // Primera imagen
       ];
     }
   }
@@ -281,6 +350,7 @@ export class InicioComponent implements OnInit{
       this.currentIndex++;
     }
     this.resetAutoSlide();
+  
     if (this.currentIndex === this.clonedImages.length - 1) {
       setTimeout(() => {
         this.isTransitionEnabled = false;

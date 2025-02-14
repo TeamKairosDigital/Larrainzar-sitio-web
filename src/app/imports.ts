@@ -24,10 +24,12 @@ import { GalleriaModule } from 'primeng/galleria';
 import { CarouselModule } from 'primeng/carousel';
 import { TooltipModule } from 'primeng/tooltip';
 import { StyleClassModule } from 'primeng/styleclass';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
         CommonModule,
+        HttpClientModule,
         TableModule,
         ButtonModule,
         IconFieldModule,
@@ -54,6 +56,7 @@ import { StyleClassModule } from 'primeng/styleclass';
     ],
     exports: [
         CommonModule,
+        HttpClientModule,
         TableModule,
         ButtonModule,
         IconFieldModule,
@@ -76,7 +79,7 @@ import { StyleClassModule } from 'primeng/styleclass';
         GalleriaModule,
         CarouselModule,
         TooltipModule,
-        StyleClassModule
+        StyleClassModule,
     ]
 })
 export class ImportsModule { }

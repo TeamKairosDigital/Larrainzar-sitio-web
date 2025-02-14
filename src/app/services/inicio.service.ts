@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class InicioService {
 
+  constructor(private http: HttpClient) { }
+
   getDataCarrusel() {
     return [
         {

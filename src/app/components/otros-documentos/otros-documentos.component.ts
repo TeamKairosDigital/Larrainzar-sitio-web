@@ -6,11 +6,12 @@ import { MessageService } from 'primeng/api';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AvisoPrivacidadService } from '../../services/aviso-privacidad.service';
 import { OtrosDocumentosDto } from '../../models/input/otrosDocumentos.dto';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-otros-documentos',
   standalone: true,
-  imports: [ImportsModule, SideBarComponent, FooterComponent],
+  imports: [ImportsModule, SideBarComponent, FooterComponent, HttpClientModule],
   templateUrl: './otros-documentos.component.html',
   styleUrl: './otros-documentos.component.scss',
   providers: [SideBarComponent, FooterComponent, MessageService]

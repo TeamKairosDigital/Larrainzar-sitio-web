@@ -4,11 +4,12 @@ import { SevacService } from '../../services/sevac.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
 import { ImportsModule } from '../../imports';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-pdf-view',
   standalone: true,
-  imports: [ImportsModule],
+  imports: [ImportsModule, HttpClientModule],
   templateUrl: './pdf-view.component.html',
   styleUrl: './pdf-view.component.scss',
   providers: [MessageService]

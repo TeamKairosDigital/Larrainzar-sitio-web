@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ImportsModule } from '../../imports';
 import { SideBarComponent } from '../tools/side-bar/side-bar.component';
 import { FooterComponent } from '../tools/footer/footer.component';
@@ -7,12 +7,12 @@ import { ObrasService } from '../../services/obras.service';
 import { MessageService } from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-obras',
   standalone: true,
-  imports: [ImportsModule, SideBarComponent, FooterComponent, HttpClientModule],
+  imports: [ImportsModule, SideBarComponent, FooterComponent],
   templateUrl: './obras.component.html',
   styleUrl: './obras.component.scss',
   providers: [SideBarComponent, FooterComponent, MessageService]
@@ -37,7 +37,8 @@ export class ObrasComponent {
       private obrasServices: ObrasService,
       private messageService: MessageService,
       private sanitizer: DomSanitizer,
-      private route: ActivatedRoute
+      private route: ActivatedRoute,
+      @Inject(PLATFORM_ID) private platformId: object
     ) { }
 
     ngOnInit() {
@@ -69,44 +70,87 @@ export class ObrasComponent {
     }
 
     // Obtener lista de obras
-    async getAllObras(): Promise<void> {
+    // async getAllObras(): Promise<void> {
 
+    //   this.spinner = true;
+    //   this.obrasServices.getAll().subscribe({
+    //     next: (response) => {
+    //       if (response.success) {
+    //         this.obras = response.data || [];
+    //         this.obras.forEach(async (element) => {
+    //           element.descripcion = this.sanitizer.bypassSecurityTrustHtml(element.descripcion || '') as unknown as string;
+    //           const mimeType = this.detectMimeType(element.imagenUrl); // Detectar MIME dinámicamente
+    //           const blob = this.base64ToBlob(element.imagenUrl, mimeType);
+    //           const url = URL.createObjectURL(blob);
+    //           element.imagen = this.sanitizer.bypassSecurityTrustResourceUrl(url); // Esto ahora usará un URL seguro
+
+    //         });
+
+    //         // Seleccionar el último elemento del array
+    //         this.selectObraURL();
+    //         // console.log(this.obras);
+    //         // this.messageService.add({ severity: 'success', summary: 'Guardado', detail: response.message, life: 10000 });
+    //       } else {
+    //         this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message, life: 10000 });
+    //       }
+    //       this.spinner = false; // Detén el spinner en ambos casos
+    //     },
+    //     error: (error) => {
+    //       // Maneja el error del backend y muestra un mensaje
+    //       this.messageService.add({
+    //         severity: 'error',
+    //         summary: 'Error',
+    //         detail: error.error.message || 'Error al crear el empleado',
+    //         life: 10000
+    //       });
+    //       this.spinner = false; // Detén el spinner en caso de error
+    //     },
+    //   });
+
+    // }
+
+    async getAllObras(): Promise<void> {
       this.spinner = true;
       this.obrasServices.getAll().subscribe({
-        next: (response) => {
+        next: async (response) => {
           if (response.success) {
             this.obras = response.data || [];
-            this.obras.forEach(async (element) => {
+    
+            for (const element of this.obras) {
               element.descripcion = this.sanitizer.bypassSecurityTrustHtml(element.descripcion || '') as unknown as string;
-              const mimeType = this.detectMimeType(element.imagenUrl); // Detectar MIME dinámicamente
-              const blob = this.base64ToBlob(element.imagenUrl, mimeType);
-              const url = URL.createObjectURL(blob);
-              element.imagen = this.sanitizer.bypassSecurityTrustResourceUrl(url); // Esto ahora usará un URL seguro
-
-            });
-
-            // Seleccionar el último elemento del array
+    
+              if (isPlatformBrowser(this.platformId)) { // Asegurar que solo se ejecuta en el navegador
+                try {
+                  const mimeType = this.detectMimeType(element.imagenUrl);
+                  const blob = this.base64ToBlob(element.imagenUrl, mimeType);
+                  const url = URL.createObjectURL(blob);
+                  element.imagen = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+                } catch (error) {
+                  console.error("Error al procesar la imagen", error);
+                  element.imagen = null;
+                }
+              }
+            }
+    
             this.selectObraURL();
-            // console.log(this.obras);
-            // this.messageService.add({ severity: 'success', summary: 'Guardado', detail: response.message, life: 10000 });
           } else {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message, life: 10000 });
           }
-          this.spinner = false; // Detén el spinner en ambos casos
+    
+          this.spinner = false;
         },
         error: (error) => {
-          // Maneja el error del backend y muestra un mensaje
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: error.error.message || 'Error al crear el empleado',
+            detail: error.error?.message || 'Error al obtener las obras',
             life: 10000
           });
-          this.spinner = false; // Detén el spinner en caso de error
+          this.spinner = false;
         },
       });
-
     }
+    
 
     // conversion de base64 para archivos
     private base64ToBlob(base64: string, mimeType: string): Blob {
@@ -160,10 +204,14 @@ export class ObrasComponent {
         }
       }
 
+
        // Hacer scroll hacia arriba después de seleccionar la obra
+      if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
+      }
+
     }
 
 }

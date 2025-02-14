@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ImportsModule } from '../../imports';
 import { SideBarComponent } from '../tools/side-bar/side-bar.component';
 import { FooterComponent } from '../tools/footer/footer.component';
@@ -12,11 +12,13 @@ import { DocumentosDto } from '../../models/input/Documentos.dto';
 import { yearsDto } from '../../models/years.dto';
 import { ley } from '../../models/ley.dto';
 import { ModalData } from '../../models/ModalData';
+import { isPlatformBrowser } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-sevac',
   standalone: true,
-  imports: [ImportsModule, SideBarComponent, FooterComponent],
+  imports: [ImportsModule, SideBarComponent, FooterComponent, HttpClientModule],
   templateUrl: './sevac.component.html',
   styleUrl: './sevac.component.scss',
   providers: [SideBarComponent, FooterComponent, MessageService, ConfirmationService]
@@ -92,7 +94,8 @@ export class SevacComponent {
     private sanitizer: DomSanitizer,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
     const today = new Date();
     this.currentYear = today.getFullYear().toString();
@@ -184,20 +187,20 @@ export class SevacComponent {
     return element.archivos.some((archivo: any) => archivo.periodo === period);
   }
 
-  openFileModal(document: DocumentosDto, period: periodoDto, nuevo: boolean): void {
+  openFileModal(documento: DocumentosDto, period: periodoDto, nuevo: boolean): void {
     this.selectedFile = null;
     this.fileUrl = null;
 
-    this.archivoSeleccionado.IdDocumento = document.id;
+    this.archivoSeleccionado.IdDocumento = documento.id;
     this.archivoSeleccionado.Anualidad = this.selectedYear.value;
     this.archivoSeleccionado.IdArchivo = 0;
-    this.archivoSeleccionado.NombreDocumento = document.nombreDocumento;
+    this.archivoSeleccionado.NombreDocumento = documento.nombreDocumento;
     this.archivoSeleccionado.PeriodoNombre = period.nombrePeriodo;
     this.archivoSeleccionado.PeriodoId = period.id;
 
     if (!nuevo) {
 
-      let documentoSeleccionado = document.archivos.filter(archivo => archivo.periodo === period.nombrePeriodo);
+      let documentoSeleccionado = documento.archivos.filter(archivo => archivo.periodo === period.nombrePeriodo);
       this.archivoSeleccionado.IdArchivo = documentoSeleccionado[0].id;
       // this.createFileDto.idArchivo = this.archivoSeleccionado.IdArchivo;
       this.EsNuevo = false;
@@ -211,7 +214,7 @@ export class SevacComponent {
       this.EsNuevo = true;
     }
 
-    // this.createFileDto.documentoId = document.id;
+    // this.createFileDto.documentoId = documento.id;
     // this.createFileDto.periodoId = period.id;
     // this.createFileDto.anualidad = this.selectedYear.value;
 
@@ -268,9 +271,12 @@ export class SevacComponent {
     // );
     // window.open(url, '_blank');
 
-    const idArchivo = this.archivoSeleccionado.IdArchivo;
-    const url = `${window.location.origin}/pdfview/${idArchivo}`;
-    window.open(url, '_blank');
+    if (isPlatformBrowser(this.platformId)) {
+      const idArchivo = this.archivoSeleccionado.IdArchivo;
+      const url = `${window.location.origin}/pdfview/${idArchivo}`;
+      window.open(url, '_blank');
+    }
+
   }
 
 }
