@@ -103,7 +103,6 @@ export class InicioComponent implements OnInit{
   isTransitionEnabled = true;
 
   constructor(
-    private http: HttpClient,
     private inicioServices: InicioService, 
     private sanitizer: DomSanitizer,
     private obrasServices: ObrasService,
